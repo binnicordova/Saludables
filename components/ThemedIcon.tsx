@@ -1,15 +1,27 @@
+import {
+    MaterialCommunityIcons as MaterialCommunityIconsType,
+    createIconSet,
+} from "@expo/vector-icons";
 import type React from "react";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 
+const glyphMap = MaterialCommunityIconsType.glyphMap;
+
+const MaterialCommunityIcons = createIconSet(
+    glyphMap,
+    "fontFamily",
+    require("../assets/fonts/MaterialCommunityIcons.ttf"),
+);
+
 type ThemedIconProps = {
-    name: React.ComponentProps<typeof MaterialIcons>["name"];
+    name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
     size?: number;
     color?: string;
-    onPress?: React.ComponentProps<typeof MaterialIcons>["onPress"];
+    onPress?: React.ComponentProps<typeof MaterialCommunityIcons>["onPress"];
     lightColor?: string;
     darkColor?: string;
+    style?: React.ComponentProps<typeof MaterialCommunityIcons>["style"];
 };
 
 export const ThemedIcon: React.FC<ThemedIconProps> = ({
@@ -19,6 +31,7 @@ export const ThemedIcon: React.FC<ThemedIconProps> = ({
     lightColor,
     darkColor,
     color,
+    style,
 }) => {
     const colorTheme = useThemeColor(
         { light: lightColor, dark: darkColor },
@@ -26,11 +39,12 @@ export const ThemedIcon: React.FC<ThemedIconProps> = ({
     );
 
     return (
-        <MaterialIcons
+        <MaterialCommunityIcons
             name={name}
             size={size}
             color={color ?? colorTheme}
             onPress={onPress}
+            style={style}
         />
     );
 };

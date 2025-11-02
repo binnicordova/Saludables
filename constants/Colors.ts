@@ -1,26 +1,68 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+const tintColorLight = "#FF6B35";
+const tintColorDark = "#FF6B35";
 
-const tintColorLight = "#0a7ea4";
-const tintColorDark = "#fff";
+const lightBase = {
+    bg: "#FFF8F2",
+    text: "#2B2D32",
+    muted: "#7A7D82",
+    mutedText: "#8E9196",
+    border: "#EFECEC",
+};
+const darkBase = {
+    bg: "#0B1220",
+    text: "#E6EEF1",
+    muted: "#9AA3A7",
+    mutedText: "#A8B0B3",
+    border: "#16202A",
+};
 
-export const Colors = {
+export const COLORS = {
     light: {
-        text: "#11181C",
-        background: "#fff",
+        text: lightBase.text,
+        background: lightBase.bg,
         tint: tintColorLight,
-        icon: "#687076",
-        tabIconDefault: "#687076",
+        icon: "#155E63",
+        tabIconDefault: "#6B6E73",
         tabIconSelected: tintColorLight,
+
+        muted: lightBase.muted,
+        mutedText: lightBase.mutedText,
+        chipBorder: lightBase.border,
+        badgeBg: "#FFF1E8",
+        title: "#132028",
+        favorite: "#FFD166",
+        success: "#2BB673",
+        successLight: "#EAF9F0",
+        danger: "#E63946",
+        dangerLight: "#FFECEA",
+        overlayBg: "rgba(11,18,32,0.12)",
+        overlayText: "#0B1220",
+        dotGood: "#9DE1C0",
+        dotBad: "#FFBDB4",
+        statusDotBorder: "rgba(0,0,0,0.06)",
     },
     dark: {
-        text: "#ECEDEE",
-        background: "#151718",
+        text: darkBase.text,
+        background: darkBase.bg,
         tint: tintColorDark,
-        icon: "#9BA1A6",
-        tabIconDefault: "#9BA1A6",
+        icon: "#6FE3D1",
+        tabIconDefault: "#9AA3A7",
         tabIconSelected: tintColorDark,
+
+        muted: darkBase.muted,
+        mutedText: darkBase.mutedText,
+        chipBorder: darkBase.border,
+        badgeBg: "#08232A",
+        title: "#F7F5F3",
+        favorite: "#FFD166",
+        success: "#2BB673",
+        successLight: "#07321E",
+        danger: "#E63946",
+        dangerLight: "#3A0F0F",
+        overlayBg: "rgba(0,0,0,0.6)",
+        overlayText: "#FFF8F2",
+        dotGood: "#59D7A6",
+        dotBad: "#FF8F89",
+        statusDotBorder: "rgba(255,255,255,0.06)",
     },
 };

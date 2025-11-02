@@ -1,11 +1,8 @@
-import { StyleSheet, Image, Platform } from "react-native";
-
 import { Collapsible } from "@/components/Collapsible";
-import { ExternalLink } from "@/components/ExternalLink";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { Image, Platform, StyleSheet } from "react-native";
 
 export default function ProfileScreen() {
     return (
@@ -13,7 +10,7 @@ export default function ProfileScreen() {
             headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
             headerImage={
                 <Image
-                    source={require("@/assets/images/icon.png")}
+                    source={require("@/assets/images/loading.gif")}
                     style={styles.headerImage}
                 />
             }
@@ -64,8 +61,9 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
     headerImage: {
-        color: "#808080",
         width: "100%",
+        height: Platform.OS === "web" ? 300 : 200,
+        resizeMode: "cover",
     },
     titleContainer: {
         flexDirection: "row",

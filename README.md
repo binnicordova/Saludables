@@ -1,59 +1,120 @@
-# SALUDABLES
+<div align="center">
+  <img src="assets/icon.png" alt="Saludables App Icon" width="150"/>
+</div>
 
-![Project Logo](./assets/images/icon.png)
+# Saludables App 🌊☀️
 
-## Introduction
+**Your smart guide to a healthy lifestyle. Discover safe beaches and pools, and plan the perfect day with our AI assistant.**
 
-Discover 🏖️ beaches, 🏊 pools, and 🍴 healthy restaurants near you. Live a healthier lifestyle with personalized recommendations.
+---
 
-## Getting Started
+### **Created by [Binni Cordova](https://binnicordova.com)**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-binnicordova-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/binnicordova/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-binnicordova.com-brightgreen?style=flat-square&logo=google-chrome)](https://binnicordova.com)
 
-To get started with the SALUDABLES project, follow these steps:
+---
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/BinniZenobioCordovaLeandro/Saludables.git
-   ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd saludables
-   ```
-3. **Install the dependencies:**
-   ```bash
-   npm install
-   ```
-4. **Run the project:**
-   ```bash
-   npm start
-   ```
+## ✨ Screenshots
 
-## Features
+| Smart Planner AI | Healthy Beaches | Safe Pools |
+| :---: |:---:|:---:|
+| ![Saludables App Screenshot 1](resources/store/store_1.jpeg) | ![Saludables App Screenshot 2](resources/store/store_2.jpeg) | ![Saludables App Screenshot 3](resources/store/store_3.jpeg) |
 
-- **Beach Finder:** Locate the best beaches near you with detailed information on amenities, water quality, and user reviews.
-- **Pool Locator:** Find nearby pools, including public and private options, with details on opening hours, facilities, and entry fees.
-- **Healthy Restaurant Guide:** Discover restaurants that offer healthy dining options, complete with menus, nutritional information, and customer ratings.
-- **Personalized Recommendations:** Receive tailored suggestions based on your preferences and location to help you maintain a healthy lifestyle.
-- **User Reviews and Ratings:** Read and contribute reviews and ratings for beaches, pools, and restaurants to help the community make informed decisions.
-- **Interactive Map:** Use the interactive map to explore and navigate to nearby healthy spots with ease.
-- **Health Tips and Articles:** Access a collection of articles and tips on healthy living, nutrition, and fitness to support your wellness journey.
+---
 
-## Contributing
+## 🚀 Features
 
-We welcome contributions from the community. To contribute, please follow these steps:
+-   🤖 **AI Smart Planner:** A Llama 3.2-based assistant that creates personalized family itineraries for beach or pool days.
+-   🏖️ **Beach and Pool Explorer:** Find safe and healthy spots with real-time sanitary quality data from DIGESA.
+-   🧭 **Enhanced Location Services:** High precision to find the best places near you.
+-   🎨 **Modern and Engaging Design:** Refreshed iconography and animations for a smooth user experience.
+-   ☁️ **Automated Backend with Firebase:** Serverless functions that automatically update data, ensuring fresh information.
+-   🔄 **CI/CD with GitHub Actions:** Automated workflows for testing, builds, and deployments.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a new Pull Request.
+---
 
-## License
+## 🛠️ Architecture and Tech Stack
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+The project uses a modern architecture based on React Native and Firebase, with an automated data flow to ensure up-to-date information.
 
-## Contact
+```mermaid
+graph TD
+    subgraph "Frontend (React Native)"
+        A[📱 Mobile App] --> B{Smart Planner AI};
+        A --> C{Beach/Pool Explorer};
+    end
 
-For any questions or suggestions, please contact us at [contact@saludables.com](mailto:contact@saludables.com).
+    subgraph "Backend (Firebase)"
+        D[🔥 Firebase Functions] --> E(📂 Cloud Storage);
+        F[🔄 Cloud Scheduler] -- "Runs every 24h" --> D;
+    end
 
-![Thank You](./assets/images/icon.png)
+    subgraph "External Services"
+        G[🌐 DIGESA API];
+    end
+
+    B -- "Queries data" --> E;
+    C -- "Displays data" --> E;
+    D -- "Fetches data" --> G;
+```
+
+---
+
+## 🤖 AI Planner Workflow
+
+The Smart Planner uses an on-device language model to generate recommendations without requiring a constant internet connection.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant App
+    participant AI Model (Llama 3.2)
+
+    User->>App: Opens Smart Planner
+    App->>App: Loads nearby beach/pool data
+    App->>AI Model: Sends data and system prompt
+    AI Model->>AI Model: Processes and generates itinerary
+    AI Model-->>App: Returns detailed plan
+    App-->>User: Displays the complete itinerary
+```
+
+---
+
+## 🏁 Getting Started
+
+To get started with the project, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/BinniZenobioCordovaLeandro/Saludables.git
+    ```
+2.  **Navigate to the project directory:**
+    ```bash
+    cd Saludables
+    ```
+3.  **Install dependencies with pnpm:**
+    ```bash
+    pnpm install
+    ```
+4.  **Run the project:**
+    ```bash
+    pnpm start
+    ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you want to improve the project, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/new-feature`).
+3.  Make your changes and commit (`git commit -m 'Add new feature'`).
+4.  Push your branch (`git push origin feature/new-feature`).
+5.  Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -1,0 +1,62 @@
+{
+    "aRow": {
+        "id": "6",
+        "strNombre": "Atarraya",
+        "strTipoPlaya": "1",
+        "idDepartamento": "17",
+        "idProvincia": "45",
+        "idDistrito": "43",
+        "strDireccion": "",
+        "strCalidadSanitaria": "Saludable",
+        "keyCalidadSanitaria": "sa",
+        "strLatitud": "-10.77935028",
+        "strLongitud": "-77.75384521",
+        "strDescripcion": "",
+        "dateUltimaInspeccion": "2025-08-29",
+        "idJurisdiccion": "29",
+        "strDepartamento": "LIMA",
+        "strProvincia": "BARRANCA",
+        "strDistrito": "BARRANCA",
+        "strJurisdiccion": "DIRESA LIMA",
+        "urlFoto": "http://veranosaludable.minsa.gob.pe/Storage/tbl_playas/fld_1081_Foto_file/6-2b0196a2a888ca2.jpg",
+        "strSource": "pl",
+        "strUltimaInspeccion": "Fecha de Registro: 29-Ago-2025",
+        "aControles": [
+            {
+                "control": "Calidad Microbiol\u00f3gica",
+                "valor": 1,
+                "valor2": {
+                    "Coliformes Termotolerantes (NMP/100mL)": "150.00 (0-200 buena / >200 mala)"
+                }
+            },
+            {
+                "control": "Calidad de Limpieza",
+                "valor": 1,
+                "valor2": {
+                    "Limpieza de la Playa (Residuos s\u00f3lidos / 10m2)": "Ausencia de residuos s\u00f3lidos",
+                    "Recipientes para residuos s\u00f3lidos": "Disponible y en buen estado"
+                }
+            },
+            {
+                "control": "Presencia de Servicios Higi\u00e9nicos",
+                "valor": 1,
+                "valor2": {
+                    "Disponibilidad de Servicios Higi\u00e9nicos": "Disponibles, limpios y en funcionamiento"
+                }
+            },
+            {
+                "control": "Estado",
+                "valor": ""
+            },
+            {
+                "control": "Descripcion",
+                "valor": ""
+            },
+            {
+                "control": "Fecha de Inspecci\u00f3n",
+                "valor": "27-Ago-2025"
+            }
+        ]
+    },
+    "blnSuccess": 1
+}
