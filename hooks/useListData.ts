@@ -1,2 +1,3 @@
 // DEPRECATED: moved to atoms/listAtom.ts
-export { default } from "@/atoms/listAtom";
+// Re-export atoms from the new location to preserve compatibility.
+export * from "@/atoms/listAtom";

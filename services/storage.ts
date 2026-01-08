@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Item } from "./models/Item";
 
-const API_BASE_URL = process.env.STORAGE_API_URL;
+const API_BASE_URL = process.env.EXPO_PUBLIC_STORAGE_API_URL;
 const CACHE_KEY_PREFIX = "dataService_cache_list_";
 const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 

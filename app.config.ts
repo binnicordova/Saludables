@@ -5,23 +5,23 @@ const EAS_OWNER = process.env.EAS_OWNER; // by https://www.binnicordova.com
 const EAS_SLUG = "saludables";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
-const VERSION = "0.0.15";
-const VERSION_CODE = 15;
+const VERSION = "0.0.17";
+const VERSION_CODE = 17;
 
 const APP_VARIANTS = {
     development: {
         identifier: "com.saludables.app.dev",
-        name: "Saludables (Dev)",
+        name: "Verano Saludable (Dev)",
         scheme: "dev.com.saludables.app",
     },
     preview: {
         identifier: "com.saludables.app.preview",
-        name: "Saludables (Preview)",
+        name: "Verano Saludable (Preview)",
         scheme: "preview.com.saludables.app",
     },
     production: {
         identifier: "com.saludables.app",
-        name: "Saludables",
+        name: "Verano Saludable",
         scheme: "com.saludables.app",
     },
 };
@@ -121,6 +121,9 @@ export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
                     "Permito que $(PRODUCT_NAME) use mi ubicación exacta.",
             },
         ],
+        "expo-font",
+        "expo-localization",
+        "expo-web-browser",
     ],
     experiments: {
         typedRoutes: true,

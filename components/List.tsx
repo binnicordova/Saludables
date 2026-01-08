@@ -137,7 +137,7 @@ export default function List<T>({
                 }
             }}
             scrollEventThrottle={16}
-            {...restProps}
+            {...(restProps as any)}
         />
     );
 }
