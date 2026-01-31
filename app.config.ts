@@ -5,8 +5,8 @@ const EAS_OWNER = process.env.EAS_OWNER; // by https://www.binnicordova.com
 const EAS_SLUG = "saludables";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
-const VERSION = "0.0.17";
-const VERSION_CODE = 17;
+const VERSION = "0.0.20";
+const VERSION_CODE = 23;
 
 const APP_VARIANTS = {
     development: {
@@ -100,12 +100,6 @@ export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
     plugins: [
         "expo-router",
         [
-            "expo-dev-client",
-            {
-                launchMode: "most-recent",
-            },
-        ],
-        [
             "expo-splash-screen",
             {
                 image: "./assets/splash.png",
@@ -122,6 +116,7 @@ export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
             },
         ],
         "expo-font",
+        "expo-asset",
         "expo-localization",
         "expo-web-browser",
     ],

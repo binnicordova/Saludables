@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, TextStyle } from "react-native";
+import type React from "react";
+import { StyleSheet, type TextStyle } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 type BadgeProps = {

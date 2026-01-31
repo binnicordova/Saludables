@@ -66,9 +66,11 @@ const updateRemoteData = async (
         })
         .map((result) => result.value)
         .filter((item: Item) => item.strLatitud && item.strLongitud);
-    
+
     if (detailedItems.length < 5) {
-        throw new Error("Insufficient detailed items fetched from DIGESA service.");
+        throw new Error(
+            "Insufficient detailed items fetched from DIGESA service.",
+        );
     }
 
     file.data = detailedItems;

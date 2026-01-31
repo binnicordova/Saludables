@@ -76,7 +76,12 @@ const dataService = {
                 console.log("Received empty data, not caching for list:", list);
             }
 
-            console.log("Returning fresh data for list:", list, "items count:", data.length);
+            console.log(
+                "Returning fresh data for list:",
+                list,
+                "items count:",
+                data.length,
+            );
             return data;
         } catch (error) {
             console.error("Error fetching list:", error);

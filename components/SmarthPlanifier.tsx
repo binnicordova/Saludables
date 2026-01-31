@@ -1,29 +1,25 @@
-import { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import {
+    LLAMA3_2_1B_SPINQUANT,
+    SpeechToTextLanguage,
+    useMockLLM as useLLM,
+    useSpeechToText,
+} from "@/hooks/useMockLLM";
+import type { ItemWithDistance } from "@/services/models/Item";
+import { shouldHideElementsAtom } from "@/store/atoms";
+import { useSetAtom } from "jotai";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+    Animated,
     ScrollView,
     Share,
     StyleSheet,
     TextInput,
     TouchableOpacity,
 } from "react-native";
-import {
-    LLAMA3_2_1B_SPINQUANT,
-    useLLM,
-    useSpeechToText,
-    SpeechToTextLanguage,
-} from "react-native-executorch";
-import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
-} from "react-native-reanimated";
 import { Animation } from "./Animation";
+import { ThemedIcon } from "./ThemedIcon";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
-import type { ItemWithDistance } from "@/services/models/Item";
-import { ThemedIcon } from "./ThemedIcon";
-import { shouldHideElementsAtom } from "@/store/atoms";
-import { useSetAtom } from "jotai";
 
 const ICON_SIZE = 100;
 const MAX_HEIGHT = 300;
@@ -33,7 +29,7 @@ type SmarthPlanifierType = {
     list: "pool" | "beach";
 };
 
-export const SmarthPlanifier = ({ data, list }: SmarthPlanifierType) => {
+export const SmarthPlanifier = memo(({ data, list }: SmarthPlanifierType) => {
     const setTabBarVisible = useSetAtom(shouldHideElementsAtom);
     const scrollViewRef = useRef<ScrollView>(null);
 
@@ -80,13 +76,13 @@ por favor crea un plan de un día divertido y seguro en una de estas playas disp
     const [isInitialized, setIsInit] = useState(false);
     const [textInputValue, setTextInputValue] = useState(initialMessage);
     const [isVisible, setIsVisible] = useState(false);
-    const opacity = useSharedValue(0);
-    const translateY = useSharedValue(20);
+    const opacity = useRef(new Animated.Value(0)).current;
+    const translateY = useRef(new Animated.Value(20)).current;
 
-    const animatedStyle = useAnimatedStyle(() => ({
-        opacity: opacity.value,
-        transform: [{ translateY: translateY.value }],
-    }));
+    const animatedStyle = {
+        opacity: opacity,
+        transform: [{ translateY: translateY }],
+    };
 
     const llmConfig = useMemo(
         () => ({
@@ -114,19 +110,28 @@ por favor crea un plan de un día divertido y seguro en una de estas playas disp
     );
 
     const togglePanel = useCallback(() => {
-        setIsVisible((current) => {
-            console.log("Toggling panel visibility:", !current);
-            opacity.value = withTiming(current ? 0 : 1, { duration: 300 });
-            translateY.value = withTiming(current ? 20 : 0, { duration: 300 });
-            const newValue = !current;
-            setTabBarVisible(!newValue);
-            return newValue;
-        });
-    }, [opacity, translateY, setTabBarVisible]);
+        setIsVisible((current) => !current);
+    }, []);
+
+    useEffect(() => {
+        Animated.parallel([
+            Animated.timing(opacity, {
+                toValue: isVisible ? 1 : 0,
+                duration: 300,
+                useNativeDriver: true,
+            }),
+            Animated.timing(translateY, {
+                toValue: isVisible ? 0 : 20,
+                duration: 300,
+                useNativeDriver: true,
+            }),
+        ]).start();
+        setTabBarVisible(!isVisible);
+    }, [isVisible, opacity, translateY, setTabBarVisible]);
+
     useEffect(() => {
         if (isInitialized) return;
-        if (!llm || !llm.isReady) {
-            console.log("LLM is not ready");
+        if (!llm.isReady) {
             return;
         }
         console.log("LLM is ready");
@@ -135,10 +140,16 @@ por favor crea un plan de un día divertido y seguro en una de estas playas disp
         console.log("Data items available:", data.length);
 
         setIsInit(true);
-    }, [data, llm, isInitialized]);
+    }, [data, llm.isReady, isInitialized]);
+
+    const lastConfigRef = useRef<string>("");
 
     useEffect(() => {
-        if (!isInitialized) return;
+        if (!isInitialized || !llm.isReady) return;
+
+        const configKey = `${list}-${linearData}-${systemPrompt}`;
+        if (lastConfigRef.current === configKey) return;
+
         const fullSystemPrompt = `${systemPrompt}
 
     ${linearData}
@@ -170,8 +181,9 @@ Preguntame lo que quieras sobre las ${
                 ],
             },
         });
+        lastConfigRef.current = configKey;
         console.log("llm configured with optimized system prompt.");
-    }, [isInitialized, llm.configure, linearData, list, systemPrompt]);
+    }, [isInitialized, llm.isReady, linearData, list, systemPrompt]);
 
     useEffect(() => {
         llm.response && scrollViewRef?.current?.scrollToEnd({ animated: true });
@@ -242,7 +254,7 @@ Preguntame lo que quieras sobre las ${
                         </ScrollView>
                         {llm.isReady &&
                             llm.messageHistory.map((msg, idx) => {
-                                const rawContent = msg && (msg).content;
+                                const rawContent = msg && msg.content;
                                 const contentStr =
                                     typeof rawContent === "string"
                                         ? rawContent
@@ -377,7 +389,7 @@ Preguntame lo que quieras sobre las ${
             </Animated.View>
         </>
     );
-};
+});
 
 const styles = StyleSheet.create({
     iconWrapper: {

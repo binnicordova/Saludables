@@ -1,11 +1,6 @@
 import type { PropsWithChildren, ReactElement } from "react";
-import { StyleSheet } from "react-native";
-import Animated, {
-    interpolate,
-    useAnimatedRef,
-    useAnimatedStyle,
-    useScrollViewOffset,
-} from "react-native-reanimated";
+import { useRef } from "react";
+import { Animated, StyleSheet } from "react-native";
 
 import { ThemedView } from "@/components/ThemedView";
 import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
@@ -23,38 +18,37 @@ export default function ParallaxScrollView({
     headerImage,
     headerBackgroundColor,
 }: Props) {
-    const colorScheme = useColorScheme() ?? "light";
-    const scrollRef = useAnimatedRef<Animated.ScrollView>();
-    const scrollOffset = useScrollViewOffset(scrollRef);
+    const colorScheme = (useColorScheme() ?? "light") as "light" | "dark";
+    const scrollOffset = useRef(new Animated.Value(0)).current;
     const bottom = useBottomTabOverflow();
-    const headerAnimatedStyle = useAnimatedStyle(() => {
-        return {
-            transform: [
-                {
-                    translateY: interpolate(
-                        scrollOffset.value,
-                        [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-                        [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
-                    ),
-                },
-                {
-                    scale: interpolate(
-                        scrollOffset.value,
-                        [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-                        [2, 1, 1],
-                    ),
-                },
-            ],
-        };
-    });
+
+    const headerAnimatedStyle = {
+        transform: [
+            {
+                translateY: scrollOffset.interpolate({
+                    inputRange: [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+                    outputRange: [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
+                }),
+            },
+            {
+                scale: scrollOffset.interpolate({
+                    inputRange: [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+                    outputRange: [2, 1, 1],
+                }),
+            },
+        ],
+    };
 
     return (
         <ThemedView style={styles.container}>
             <Animated.ScrollView
-                ref={scrollRef}
                 scrollEventThrottle={16}
                 scrollIndicatorInsets={{ bottom }}
                 contentContainerStyle={{ paddingBottom: bottom }}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
+                    { useNativeDriver: true },
+                )}
             >
                 <Animated.View
                     style={[

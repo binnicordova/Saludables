@@ -9,8 +9,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { Provider as JotaiProvider } from "jotai";
 import { useEffect } from "react";
-import "react-native-reanimated";
 
+import { ShareAppModal } from "@/components/ShareAppModal";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -44,6 +44,7 @@ export default function RootLayout() {
                     />
                     <Stack.Screen name="+not-found" />
                 </Stack>
+                <ShareAppModal />
                 <StatusBar style="auto" />
             </ThemeProvider>
         </JotaiProvider>

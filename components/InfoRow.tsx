@@ -1,6 +1,6 @@
-import React from "react";
-import { View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import type React from "react";
+import { View } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 type InfoRowProps = {

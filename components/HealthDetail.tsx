@@ -4,17 +4,19 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import type { ItemWithDistance } from "@/services/models/Item";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import { useAtomValue, useSetAtom } from "jotai";
 import type React from "react";
 import { useCallback, useMemo } from "react";
-import { Pressable, StyleSheet, View, ScrollView } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import Animated, {
-    useSharedValue,
-    useAnimatedStyle,
-    withSpring,
-} from "react-native-reanimated";
+import { useRef } from "react";
+import {
+    Animated,
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    View,
+} from "react-native";
 import { ThemedIcon } from "./ThemedIcon";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
@@ -43,15 +45,15 @@ const FONT = {
     BUTTON: 13,
 };
 
+import Badge from "./Badge";
+import InfoRow from "./InfoRow";
+import VisitButton from "./VisitButton";
 import {
     evolutiveDistanceText,
     getHealthColor,
-    timeAgo,
     openMaps,
+    timeAgo,
 } from "./healthUtils";
-import InfoRow from "./InfoRow";
-import Badge from "./Badge";
-import VisitButton from "./VisitButton";
 
 const HealthDetail: React.FC<ItemWithDistance> = ({
     id,
@@ -103,16 +105,9 @@ const HealthDetail: React.FC<ItemWithDistance> = ({
 
     const borderColor = (isFavorited ? favoriteColor : health.color) ?? "#000";
 
-    const scale = useSharedValue(1);
-    const animatedStyle = useAnimatedStyle(() => ({
-        transform: [{ scale: scale.value }],
-    }));
-
-    const handlePressIn = () => {
-        scale.value = withSpring(0.97, { stiffness: 220, damping: 20 });
-    };
-    const handlePressOut = () => {
-        scale.value = withSpring(1, { stiffness: 220, damping: 20 });
+    const scale = useRef(new Animated.Value(1)).current;
+    const animatedStyle = {
+        transform: [{ scale }],
     };
 
     const handleOpenMaps = useCallback(

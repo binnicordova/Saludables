@@ -7,7 +7,15 @@
     },
     "files": {
         "ignoreUnknown": false,
-        "ignore": ["scripts/*", "**/node_modules/**", "**/dist/**", "**/build/**", "**/.expo/**", "android/**", "ios/**"]
+        "ignore": [
+            "scripts/*",
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/.expo/**",
+            "android/**",
+            "ios/**"
+        ]
     },
     "formatter": {
         "enabled": true,

@@ -54,8 +54,14 @@ export const shouldFilterHealthAtom = atom<boolean>(true);
 // add filter atom here so makeFilteredListAtom can read it
 export const filterValueAtom = atom<string>("");
 
-const beachListDataAtom = atomWithStorage<ItemWithDistance[]>("beachListData", []);
-const poolListDataAtom = atomWithStorage<ItemWithDistance[]>("poolListData", []);
+const beachListDataAtom = atomWithStorage<ItemWithDistance[]>(
+    "beachListData",
+    [],
+);
+const poolListDataAtom = atomWithStorage<ItemWithDistance[]>(
+    "poolListData",
+    [],
+);
 
 const HEALTHY_KEY = "ns";
 

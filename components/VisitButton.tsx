@@ -1,6 +1,6 @@
-import React from "react";
-import { Pressable, View, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import type React from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 import { ThemedText } from "./ThemedText";
 
 type VisitButtonProps = {
@@ -10,19 +10,40 @@ type VisitButtonProps = {
     style?: any;
 };
 
-export const VisitButton: React.FC<VisitButtonProps> = ({ isHealthy, color, onPress, style }) => (
+export const VisitButton: React.FC<VisitButtonProps> = ({
+    isHealthy,
+    color,
+    onPress,
+    style,
+}) => (
     <Pressable
         accessible
         accessibilityRole="button"
         accessibilityLabel={isHealthy ? "Ver ruta" : "No visitar - ver ruta"}
         accessibilityHint="Abre la ruta en Google Maps"
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        style={[styles.visitButton, isHealthy ? { backgroundColor: color } : styles.visitButtonMuted, !isHealthy ? { borderColor: color } : null, style]}
+        style={[
+            styles.visitButton,
+            isHealthy ? { backgroundColor: color } : styles.visitButtonMuted,
+            !isHealthy ? { borderColor: color } : null,
+            style,
+        ]}
         onPress={onPress}
     >
         <View style={styles.visitButtonInner}>
-            <MaterialIcons name="place" size={14} color={isHealthy ? "#fff" : color} style={{ marginRight: 6 }} />
-            <ThemedText style={isHealthy ? styles.visitButtonText : [styles.visitButtonTextMuted, { color }]}> 
+            <MaterialIcons
+                name="place"
+                size={14}
+                color={isHealthy ? "#fff" : color}
+                style={{ marginRight: 6 }}
+            />
+            <ThemedText
+                style={
+                    isHealthy
+                        ? styles.visitButtonText
+                        : [styles.visitButtonTextMuted, { color }]
+                }
+            >
                 {isHealthy ? "VER RUTA" : "NO VISITAR"}
             </ThemedText>
         </View>

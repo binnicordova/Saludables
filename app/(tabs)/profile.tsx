@@ -1,15 +1,15 @@
-import { Collapsible } from "@/components/Collapsible";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { Platform, Pressable, StyleSheet, View } from "react-native";
-import { Image } from "expo-image";
-import { useAtomValue } from "jotai";
 import { favoritesAtom } from "@/atoms/listAtom";
 import { currentLocationAtom } from "@/atoms/location";
-import Constants from "expo-constants";
-import * as Linking from "expo-linking";
+import { Collapsible } from "@/components/Collapsible";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import Constants from "expo-constants";
+import { Image } from "expo-image";
+import * as Linking from "expo-linking";
+import { useAtomValue } from "jotai";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
 
 export default function ProfileScreen() {
     const favorites = useAtomValue(favoritesAtom) || [];
