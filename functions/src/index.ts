@@ -9,6 +9,9 @@ import { onSchedule } from "firebase-functions/v2/scheduler";
 import type { Item } from "./Item";
 import { digesaService } from "./digesa";
 
+const DETAIL_BATCH_SIZE = 10;
+const FUNCTION_TIMEOUT_SECONDS = 540;
+
 type DataFile = {
     status: number;
     data: Item[];
@@ -52,9 +55,17 @@ const updateRemoteData = async (
         throw new Error("No items fetched from DIGESA service.");
     }
 
-    const results = await Promise.allSettled(
-        items.map((item) => digesaService.item(item.id, list)),
-    );
+    const results: PromiseSettledResult<Item>[] = [];
+    for (let i = 0; i < items.length; i += DETAIL_BATCH_SIZE) {
+        const batch = items.slice(i, i + DETAIL_BATCH_SIZE);
+        console.log(
+            `Fetching detail batch ${Math.floor(i / DETAIL_BATCH_SIZE) + 1} of ${Math.ceil(items.length / DETAIL_BATCH_SIZE)}`,
+        );
+        const batchResults = await Promise.allSettled(
+            batch.map((item) => digesaService.item(item.id, list)),
+        );
+        results.push(...batchResults);
+    }
 
     const detailedItems = results
         .filter((result): result is PromiseFulfilledResult<Item> => {
@@ -100,20 +111,39 @@ const refreshBeachItemsData = async () => {
 };
 
 // EveryDay at 2:05 AM
-export const updatePoolItemsData = onSchedule("5 2 * * *", (event) => {
-    refreshPoolItemsData();
-});
+export const updatePoolItemsData = onSchedule(
+    {
+        schedule: "5 2 * * *",
+        timeoutSeconds: FUNCTION_TIMEOUT_SECONDS,
+    },
+    async () => {
+        await refreshPoolItemsData();
+    },
+);
 
 // EveryDay at 2:10 AM
-export const updateBeachItemsData = onSchedule("10 2 * * *", (event) => {
-    refreshBeachItemsData();
-});
+export const updateBeachItemsData = onSchedule(
+    {
+        schedule: "10 2 * * *",
+        timeoutSeconds: FUNCTION_TIMEOUT_SECONDS,
+    },
+    async () => {
+        await refreshBeachItemsData();
+    },
+);
 
-export const refreshPoolItems = onRequest(async (request, response) => {
-    await refreshPoolItemsData();
-    response.send("Pool items data refresh initiated.");
-});
-export const refreshBeachItems = onRequest(async (request, response) => {
-    await refreshBeachItemsData();
-    response.send("Beach items data refresh initiated.");
-});
+export const refreshPoolItems = onRequest(
+    { timeoutSeconds: FUNCTION_TIMEOUT_SECONDS },
+    async (request, response) => {
+        await refreshPoolItemsData();
+        response.send("Pool items data refresh completed.");
+    },
+);
+
+export const refreshBeachItems = onRequest(
+    { timeoutSeconds: FUNCTION_TIMEOUT_SECONDS },
+    async (request, response) => {
+        await refreshBeachItemsData();
+        response.send("Beach items data refresh completed.");
+    },
+);

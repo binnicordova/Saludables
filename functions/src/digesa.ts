@@ -1,14 +1,24 @@
 import type { Item } from "./Item";
 
 const API_BASE_URL = "https://veranosaludable.minsa.gob.pe/VF/ws2.php?";
+const REQUEST_TIMEOUT_MS = 20_000;
+
+const createTimeoutController = () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    return { controller, timeoutId };
+};
 
 export const digesaService = {
     list: async (list: "pool" | "beach" = "pool"): Promise<Item[]> => {
+        const { controller, timeoutId } = createTimeoutController();
         try {
             const strSource = list === "pool" ? "pi" : "pl";
             console.log(`Fetching list of type '${list}' from DIGESA service.`);
-            const response = await fetch(API_BASE_URL, {
+
+            const payload = {
                 method: "POST",
+                signal: controller.signal,
                 headers: {
                     accept: "application/json, text/javascript, */*; q=0.01",
                     "content-type":
@@ -16,7 +26,15 @@ export const digesaService = {
                     "x-requested-with": "XMLHttpRequest",
                 },
                 body: `rt=exa&cmd=getList&strSource=${strSource}&idDpto=&idProv=&idDist=&strCalidadSanitaria=&strSearch=`,
-            });
+            };
+
+            console.log("CURL command for debugging:\n", `curl -X POST '${API_BASE_URL}' \\
+  -H 'accept: application/json, text/javascript, */*; q=0.01' \\
+  -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' \\
+  -H 'x-requested-with: XMLHttpRequest' \\
+  --data-raw 'rt=exa&cmd=getList&strSource=${strSource}&idDpto=&idProv=&idDist=&strCalidadSanitaria=&strSearch='`);
+
+            const response = await fetch(API_BASE_URL, payload);
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }
@@ -32,40 +50,33 @@ export const digesaService = {
         } catch (error) {
             console.error("Error fetching list:", error);
             throw error;
+        } finally {
+            clearTimeout(timeoutId);
         }
     },
     item: async (
         id: string,
         list: "pool" | "beach" = "pool",
     ): Promise<Item> => {
+        const { controller, timeoutId } = createTimeoutController();
         try {
             const strSource = list === "pool" ? "pi" : "pl";
             console.log(
                 `Fetching item with id '${id}' from list type '${list}'`,
             );
-            const response = await fetch(API_BASE_URL, {
+            const payload = {
                 method: "POST",
+                signal: controller.signal,
                 headers: {
                     accept: "application/json, text/javascript, */*; q=0.01",
-                    "accept-language": "en,es-PE;q=0.9,es;q=0.8,und;q=0.7",
                     "content-type":
                         "application/x-www-form-urlencoded; charset=UTF-8",
-                    origin: "https://veranosaludable.minsa.gob.pe",
-                    priority: "u=1, i",
-                    referer: "https://veranosaludable.minsa.gob.pe/",
-                    "sec-ch-ua":
-                        '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-                    "sec-ch-ua-mobile": "?0",
-                    "sec-ch-ua-platform": '"macOS"',
-                    "sec-fetch-dest": "empty",
-                    "sec-fetch-mode": "cors",
-                    "sec-fetch-site": "same-origin",
-                    "user-agent":
-                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
                     "x-requested-with": "XMLHttpRequest",
                 },
                 body: `rt=exa&cmd=getDetail&strSource=${strSource}&id=${id}`,
-            });
+            };
+
+            const response = await fetch(API_BASE_URL, payload);
             if (response.status !== 200) {
                 throw new Error("Network response was not ok");
             }
@@ -79,6 +90,8 @@ export const digesaService = {
         } catch (error) {
             console.error(`Error fetching item with id ${id}:`, error);
             throw error;
+        } finally {
+            clearTimeout(timeoutId);
         }
     },
 };

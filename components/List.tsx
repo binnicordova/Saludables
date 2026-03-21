@@ -8,7 +8,6 @@ import {
     ActivityIndicator,
     Platform,
     RefreshControl,
-    Text,
     View,
 } from "react-native";
 import type {
@@ -26,6 +25,7 @@ type Props<T> = Omit<
     error?: string | null; // Optional, defaults to null
     refreshing?: boolean; // Optional, defaults to false
     onRefresh?: () => void; // Optional
+    statusText?: string | null;
     data: readonly T[]; // Required, ensures data is properly typed
 };
 
@@ -35,6 +35,7 @@ export default function List<T>({
     error = null,
     refreshing = false,
     onRefresh,
+    statusText = null,
     ListHeaderComponent,
     ListEmptyComponent,
     contentContainerStyle,
@@ -84,14 +85,17 @@ export default function List<T>({
         <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-            <Text style={{ color: "red" }}>{`Error: ${error}`}</Text>
+            <ThemedText>{`Error: ${error}`}</ThemedText>
         </View>
     );
 
     const defaultHeader = (
-        <ThemedText style={{ textAlign: "right", paddingHorizontal: 16 }}>
-            {`${(data as readonly unknown[] | null)?.length ?? 0} resultados`}
-        </ThemedText>
+        <ThemedView style={{ paddingHorizontal: 16, gap: 4 }}>
+            {statusText ? <ThemedText type="caption">{statusText}</ThemedText> : null}
+            <ThemedText style={{ textAlign: "right" }}>
+                {`${(data as readonly unknown[] | null)?.length ?? 0} resultados`}
+            </ThemedText>
+        </ThemedView>
     );
 
     const defaultEmpty = (
@@ -107,8 +111,8 @@ export default function List<T>({
         contentContainerStyle,
     ];
 
-    if (loading) return renderLoading();
-    if (error) return renderError();
+    if (loading && data.length === 0) return renderLoading();
+    if (error && data.length === 0) return renderError();
 
     return (
         <FlashList
@@ -137,7 +141,7 @@ export default function List<T>({
                 }
             }}
             scrollEventThrottle={16}
-            {...(restProps as any)}
+            {...restProps}
         />
     );
 }

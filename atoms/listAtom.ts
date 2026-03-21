@@ -1,5 +1,6 @@
 import type { Item, ItemWithDistance } from "@/services/models/Item";
 import dataService from "@/services/storage";
+import type { DownloadSource, ListType } from "@/services/storage";
 import type * as Location from "expo-location";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
@@ -123,17 +124,103 @@ export const updateListDataAtom = atom(
     },
 );
 
-export const isLoadingAtom = atom<boolean>(false);
-export const errorAtom = atom<string | null>(null);
+type ListDownloadState = {
+    isLoading: boolean;
+    isRefreshing: boolean;
+    error: string | null;
+    lastUpdated: number | null;
+    source: DownloadSource | null;
+};
+
+const DEFAULT_DOWNLOAD_STATE: ListDownloadState = {
+    isLoading: false,
+    isRefreshing: false,
+    error: null,
+    lastUpdated: null,
+    source: null,
+};
+
+const listDownloadStateAtom = atom<Record<ListType, ListDownloadState>>({
+    beach: { ...DEFAULT_DOWNLOAD_STATE },
+    pool: { ...DEFAULT_DOWNLOAD_STATE },
+});
+
+const setListDownloadStateAtom = atom(
+    null,
+    (
+        get,
+        set,
+        list: ListType,
+        patch: Partial<ListDownloadState>,
+    ) => {
+        const currentState = get(listDownloadStateAtom);
+        set(listDownloadStateAtom, {
+            ...currentState,
+            [list]: {
+                ...currentState[list],
+                ...patch,
+            },
+        });
+    },
+);
+
+export const beachDownloadStateAtom = atom(
+    (get) => get(listDownloadStateAtom).beach,
+);
+export const poolDownloadStateAtom = atom(
+    (get) => get(listDownloadStateAtom).pool,
+);
+
+export const isLoadingAtom = atom((get) => {
+    const state = get(listDownloadStateAtom);
+    return (
+        state.beach.isLoading ||
+        state.beach.isRefreshing ||
+        state.pool.isLoading ||
+        state.pool.isRefreshing
+    );
+});
+export const errorAtom = atom((get) => {
+    const state = get(listDownloadStateAtom);
+    return state.beach.error ?? state.pool.error;
+});
 
 export const refreshListDataAtom = atom(
     null,
     async (get, set, list: "pool" | "beach" = "pool") => {
-        set(isLoadingAtom, true);
+        const currentData =
+            list === "pool" ? get(poolListDataAtom) : get(beachListDataAtom);
+        const hasExistingData = currentData.length > 0;
+
+        set(setListDownloadStateAtom, list, {
+            isLoading: !hasExistingData,
+            isRefreshing: hasExistingData,
+            error: null,
+        });
+
         console.log("Refreshing list data for:", list);
-        const response = await dataService.list(list);
-        await set(updateListDataAtom, response, list);
-        set(isLoadingAtom, false);
+
+        try {
+            const response = await dataService.listWithMeta(list);
+            await set(updateListDataAtom, response.data, list);
+            set(setListDownloadStateAtom, list, {
+                isLoading: false,
+                isRefreshing: false,
+                error: null,
+                lastUpdated: response.meta.lastUpdated,
+                source: response.meta.source,
+            });
+        } catch (error) {
+            const message =
+                error instanceof Error
+                    ? error.message
+                    : "No se pudo actualizar la lista";
+            set(setListDownloadStateAtom, list, {
+                isLoading: false,
+                isRefreshing: false,
+                error: message,
+            });
+        }
     },
 );
 

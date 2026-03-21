@@ -15,7 +15,10 @@
         },
         "production": {
             "autoIncrement": true,
-            "channel": "production"
+            "channel": "production",
+            "env": {
+                "EXPO_PUBLIC_STORAGE_API_URL": "https://storage.googleapis.com/saludableson.firebasestorage.app/data"
+            }
         }
     },
     "submit": {

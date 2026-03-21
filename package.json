@@ -1,7 +1,7 @@
 {
     "name": "saludables",
     "main": "expo-router/entry",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "scripts": {
         "start": "expo start",
         "mocks": "node ./scripts/mock-list-details.js",
@@ -28,6 +28,7 @@
     "dependencies": {
         "@expo/ui": "0.2.0-canary-20260105-6b962e6",
         "@expo/vector-icons": "^15.0.3",
+        "@lottiefiles/dotlottie-react": "^0.17.15",
         "@react-native-async-storage/async-storage": "2.2.0",
         "@react-native-segmented-control/segmented-control": "2.5.7",
         "@react-navigation/bottom-tabs": "^7.2.0",
@@ -75,7 +76,7 @@
         "@babel/core": "^7.25.2",
         "@biomejs/biome": "1.9.4",
         "@expo/config-types": "^54.0.8",
-        "@expo/metro-runtime": "^6.1.2",
+        "@expo/metro-runtime": "6.2.0-canary-20260105-6b962e6",
         "@types/jest": "^29.5.12",
         "@types/react": "~19.1.10",
         "@types/react-test-renderer": "^18.3.0",

@@ -5,8 +5,8 @@ const EAS_OWNER = process.env.EAS_OWNER; // by https://www.binnicordova.com
 const EAS_SLUG = "saludables";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
-const VERSION = "0.0.20";
-const VERSION_CODE = 23;
+const VERSION = "0.0.21";
+const VERSION_CODE = 24;
 
 const APP_VARIANTS = {
     development: {
@@ -52,9 +52,10 @@ export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
         backgroundColor: "#ffffff",
     },
     updates: {
-        fallbackToCacheTimeout: 0,
+        fallbackToCacheTimeout: 1000 * 60,
         url: `https://u.expo.dev/${EAS_PROJECT_ID}`,
         enabled: true,
+        checkAutomatically: "ON_LOAD",
     },
     assetBundlePatterns: ["**/*"],
     ios: {
