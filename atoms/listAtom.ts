@@ -49,7 +49,9 @@ const sortDataAccordingLocation = (
         });
 };
 
-export const listTypeAtom = atom<"beach" | "pool">("beach");
+export const listTypeAtom = atom<
+    "beach" | "pool" | "hotel" | "restaurant" | "tourism"
+>("beach");
 export const shouldFilterHealthAtom = atom<boolean>(true);
 
 // add filter atom here so makeFilteredListAtom can read it
@@ -63,11 +65,28 @@ const poolListDataAtom = atomWithStorage<ItemWithDistance[]>(
     "poolListData",
     [],
 );
+const hotelListDataAtom = atomWithStorage<ItemWithDistance[]>(
+    "hotelListData",
+    [],
+);
+const restaurantListDataAtom = atomWithStorage<ItemWithDistance[]>(
+    "restaurantListData",
+    [],
+);
+const tourismListDataAtom = atomWithStorage<ItemWithDistance[]>(
+    "tourismListData",
+    [],
+);
 
 const HEALTHY_KEY = "ns";
 
 const makeFilteredListAtom = (
-    baseAtom: typeof beachListDataAtom | typeof poolListDataAtom,
+    baseAtom:
+        | typeof beachListDataAtom
+        | typeof poolListDataAtom
+        | typeof hotelListDataAtom
+        | typeof restaurantListDataAtom
+        | typeof tourismListDataAtom,
 ) =>
     atom((get) => {
         const list = get(baseAtom);
@@ -105,21 +124,48 @@ const makeFilteredListAtom = (
 
 export const getBeachListDataAtom = makeFilteredListAtom(beachListDataAtom);
 export const getPoolListDataAtom = makeFilteredListAtom(poolListDataAtom);
+export const getHotelListDataAtom = makeFilteredListAtom(hotelListDataAtom);
+export const getRestaurantListDataAtom = makeFilteredListAtom(
+    restaurantListDataAtom,
+);
+export const getTourismListDataAtom = makeFilteredListAtom(tourismListDataAtom);
 export const getAllFilteredListDataAtom = atom((get) => {
     const beaches = get(getBeachListDataAtom);
     const pools = get(getPoolListDataAtom);
-    return [...beaches, ...pools];
+    const hotels = get(getHotelListDataAtom);
+    const restaurants = get(getRestaurantListDataAtom);
+    const tourism = get(getTourismListDataAtom);
+    return [...beaches, ...pools, ...hotels, ...restaurants, ...tourism];
 });
 
 export const updateListDataAtom = atom(
     null,
-    async (get, set, update: Item[], list: "pool" | "beach" = "pool") => {
+    async (get, set, update: Item[], list: ListType = "pool") => {
         const location = await get(currentLocationAtom);
         const sortedData = location
             ? sortDataAccordingLocation(update, location)
             : update;
-        const targetAtom =
-            list === "pool" ? poolListDataAtom : beachListDataAtom;
+        let targetAtom: typeof beachListDataAtom;
+        switch (list) {
+            case "beach":
+                targetAtom = beachListDataAtom;
+                break;
+            case "pool":
+                targetAtom = poolListDataAtom;
+                break;
+            case "hotel":
+                targetAtom = hotelListDataAtom;
+                break;
+            case "restaurant":
+                targetAtom = restaurantListDataAtom;
+                break;
+            case "tourism":
+                targetAtom = tourismListDataAtom;
+                break;
+            default:
+                targetAtom = poolListDataAtom;
+                break;
+        }
         set(targetAtom, sortedData);
     },
 );
@@ -143,16 +189,14 @@ const DEFAULT_DOWNLOAD_STATE: ListDownloadState = {
 const listDownloadStateAtom = atom<Record<ListType, ListDownloadState>>({
     beach: { ...DEFAULT_DOWNLOAD_STATE },
     pool: { ...DEFAULT_DOWNLOAD_STATE },
+    hotel: { ...DEFAULT_DOWNLOAD_STATE },
+    restaurant: { ...DEFAULT_DOWNLOAD_STATE },
+    tourism: { ...DEFAULT_DOWNLOAD_STATE },
 });
 
 const setListDownloadStateAtom = atom(
     null,
-    (
-        get,
-        set,
-        list: ListType,
-        patch: Partial<ListDownloadState>,
-    ) => {
+    (get, set, list: ListType, patch: Partial<ListDownloadState>) => {
         const currentState = get(listDownloadStateAtom);
         set(listDownloadStateAtom, {
             ...currentState,
@@ -170,6 +214,15 @@ export const beachDownloadStateAtom = atom(
 export const poolDownloadStateAtom = atom(
     (get) => get(listDownloadStateAtom).pool,
 );
+export const hotelDownloadStateAtom = atom(
+    (get) => get(listDownloadStateAtom).hotel,
+);
+export const restaurantDownloadStateAtom = atom(
+    (get) => get(listDownloadStateAtom).restaurant,
+);
+export const tourismDownloadStateAtom = atom(
+    (get) => get(listDownloadStateAtom).tourism,
+);
 
 export const isLoadingAtom = atom((get) => {
     const state = get(listDownloadStateAtom);
@@ -177,19 +230,47 @@ export const isLoadingAtom = atom((get) => {
         state.beach.isLoading ||
         state.beach.isRefreshing ||
         state.pool.isLoading ||
-        state.pool.isRefreshing
+        state.pool.isRefreshing ||
+        state.hotel.isLoading ||
+        state.hotel.isRefreshing ||
+        state.restaurant.isLoading ||
+        state.restaurant.isRefreshing ||
+        state.tourism.isLoading ||
+        state.tourism.isRefreshing
     );
 });
 export const errorAtom = atom((get) => {
     const state = get(listDownloadStateAtom);
-    return state.beach.error ?? state.pool.error;
+    return (
+        state.beach.error ??
+        state.pool.error ??
+        state.hotel.error ??
+        state.restaurant.error ??
+        state.tourism.error
+    );
 });
 
 export const refreshListDataAtom = atom(
     null,
-    async (get, set, list: "pool" | "beach" = "pool") => {
-        const currentData =
-            list === "pool" ? get(poolListDataAtom) : get(beachListDataAtom);
+    async (get, set, list: ListType = "pool") => {
+        let currentData: ItemWithDistance[] = [];
+        switch (list) {
+            case "beach":
+                currentData = get(beachListDataAtom);
+                break;
+            case "pool":
+                currentData = get(poolListDataAtom);
+                break;
+            case "hotel":
+                currentData = get(hotelListDataAtom);
+                break;
+            case "restaurant":
+                currentData = get(restaurantListDataAtom);
+                break;
+            case "tourism":
+                currentData = get(tourismListDataAtom);
+                break;
+        }
         const hasExistingData = currentData.length > 0;
 
         set(setListDownloadStateAtom, list, {

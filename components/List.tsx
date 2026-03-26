@@ -91,7 +91,9 @@ export default function List<T>({
 
     const defaultHeader = (
         <ThemedView style={{ paddingHorizontal: 16, gap: 4 }}>
-            {statusText ? <ThemedText type="caption">{statusText}</ThemedText> : null}
+            {statusText ? (
+                <ThemedText type="caption">{statusText}</ThemedText>
+            ) : null}
             <ThemedText style={{ textAlign: "right" }}>
                 {`${(data as readonly unknown[] | null)?.length ?? 0} resultados`}
             </ThemedText>

@@ -1,6 +1,6 @@
 import {
-    beachDownloadStateAtom,
-    getBeachListDataAtom,
+    getHotelListDataAtom,
+    hotelDownloadStateAtom,
     refreshListDataAtom,
 } from "@/atoms/listAtom";
 import HealthDetail from "@/components/HealthDetail";
@@ -9,9 +9,9 @@ import { SmarthPlanifier } from "@/components/SmarthPlanifier";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useMemo } from "react";
 
-export default function HomeScreen() {
-    const dataItems = useAtomValue(getBeachListDataAtom);
-    const downloadState = useAtomValue(beachDownloadStateAtom);
+export default function HotelScreen() {
+    const dataItems = useAtomValue(getHotelListDataAtom);
+    const downloadState = useAtomValue(hotelDownloadStateAtom);
 
     const refreshData = useSetAtom(refreshListDataAtom);
 
@@ -39,14 +39,14 @@ export default function HomeScreen() {
     }, [downloadState, dataItems.length]);
 
     useEffect(() => {
-        refreshData("beach");
+        refreshData("hotel");
     }, [refreshData]);
 
     return (
         <>
-            <SmarthPlanifier data={dataItems} list="beach" />
+            <SmarthPlanifier data={dataItems} list="hotel" />
             <List
-                onRefresh={() => refreshData("beach")}
+                onRefresh={() => refreshData("hotel")}
                 refreshing={downloadState.isRefreshing}
                 loading={downloadState.isLoading}
                 error={downloadState.error ?? undefined}

@@ -4,10 +4,10 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { shouldHideElementsAtom } from "@/store/atoms";
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import { useAtom } from "jotai";
 import React from "react";
-import { Platform } from "react-native";
+import Icon from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
     const tint = useThemeColor({}, "tint");
@@ -58,24 +58,49 @@ export default function TabLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="profile"
+                    name="tourism"
                     options={{
-                        title: "Perfil",
+                        title: "TURISMO",
                         tabBarIcon: ({ color }) => (
                             <ThemedIcon
                                 size={28}
-                                name={
-                                    Platform.OS === "ios"
-                                        ? "account-circle-outline"
-                                        : "account-circle"
-                                }
+                                name="map-marker-radius"
                                 color={color}
                             />
                         ),
                     }}
                 />
+                <Tabs.Screen
+                    name="hotel"
+                    options={{
+                        title: "HOTELES",
+                        tabBarIcon: ({ color }) => (
+                            <ThemedIcon
+                                size={28}
+                                name="office-building"
+                                color={color}
+                            />
+                        ),
+                    }}
+                />
+                <Tabs.Screen
+                    name="restaurant"
+                    options={{
+                        title: "RESTAURANTES",
+                        tabBarIcon: ({ color }) => (
+                            <ThemedIcon size={28} name="food" color={color} />
+                        ),
+                    }}
+                />
             </Tabs>
             {shouldHideElements && <FloatingCard />}
+            <Icon
+                name="person-circle-outline"
+                size={50}
+                color={tint}
+                onPress={() => router.push("/profile")}
+                style={{ position: "absolute", top: 40, left: 70 }}
+            />
         </>
     );
 }

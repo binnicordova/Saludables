@@ -29,7 +29,9 @@ export default function HomeScreen() {
         }
 
         if (downloadState.lastUpdated) {
-            const formatted = new Date(downloadState.lastUpdated).toLocaleString();
+            const formatted = new Date(
+                downloadState.lastUpdated,
+            ).toLocaleString();
             return `Última actualización: ${formatted}`;
         }
 
