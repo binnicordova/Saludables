@@ -1,4 +1,4 @@
-name: EAS Build App
+name: EAS Production App
 
 on:
   push:
@@ -39,5 +39,5 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm install
 
-      - name: 🚀 Build app
-        run: eas build --platform android --non-interactive
+      - name: 🚀 Publish production update
+        run: eas update --auto --branch production
