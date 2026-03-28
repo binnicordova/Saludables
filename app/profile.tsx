@@ -37,7 +37,7 @@ export default function ProfileScreen() {
             headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
             headerImage={
                 <Image
-                    source={require("@/assets/icon.png")}
+                    source={require("@/assets/images/banner.png")}
                     style={styles.headerImage}
                     contentFit="cover"
                 />

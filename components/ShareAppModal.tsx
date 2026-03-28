@@ -17,7 +17,7 @@ import {
 } from "react-native";
 
 const shareModalLoadable = loadable(shouldShowShareModalAtom);
-const PROMO_BANNER = require("@/assets/images/beach-promo.2.png");
+const PROMO_BANNER = require("@/assets/images/10OFF-promo.png");
 
 export function ShareAppModal() {
     const shouldShowState = useAtomValue(shareModalLoadable);

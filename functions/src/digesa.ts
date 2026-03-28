@@ -28,11 +28,14 @@ export const digesaService = {
                 body: `rt=exa&cmd=getList&strSource=${strSource}&idDpto=&idProv=&idDist=&strCalidadSanitaria=&strSearch=`,
             };
 
-            console.log("CURL command for debugging:\n", `curl -X POST '${API_BASE_URL}' \\
+            console.log(
+                "CURL command for debugging:\n",
+                `curl -X POST '${API_BASE_URL}' \\
   -H 'accept: application/json, text/javascript, */*; q=0.01' \\
   -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' \\
   -H 'x-requested-with: XMLHttpRequest' \\
-  --data-raw 'rt=exa&cmd=getList&strSource=${strSource}&idDpto=&idProv=&idDist=&strCalidadSanitaria=&strSearch='`);
+  --data-raw 'rt=exa&cmd=getList&strSource=${strSource}&idDpto=&idProv=&idDist=&strCalidadSanitaria=&strSearch='`,
+            );
 
             const response = await fetch(API_BASE_URL, payload);
             if (response.status !== 200) {

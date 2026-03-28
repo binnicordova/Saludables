@@ -26,7 +26,7 @@ const MAX_HEIGHT = 300;
 
 type SmarthPlanifierType = {
     data: ItemWithDistance[];
-    list: "pool" | "beach";
+    list: "pool" | "beach" | "hotel" | "restaurant";
 };
 
 export const SmarthPlanifier = memo(({ data, list }: SmarthPlanifierType) => {
@@ -35,6 +35,26 @@ export const SmarthPlanifier = memo(({ data, list }: SmarthPlanifierType) => {
 
     const { title, jsonBlockName, initialMessage, systemPrompt } =
         useMemo(() => {
+            if (list === "hotel") {
+                return {
+                    title: "Planifica tu estadía",
+                    jsonBlockName: "AVAILABLE_HOTELS_JSON",
+                    initialMessage: `Busco un buen hotel para hospedarme, por favor recomienda uno de estos hoteles y crea un itinerario de estadía confortable.`,
+                    systemPrompt:
+                        "Eres un asistente experto en hotelería y turismo. Recomienda el mejor hotel de la lista basándote en su ubicación y calidad sanitaria. Habla de forma profesional y servicial.",
+                };
+            }
+
+            if (list === "restaurant") {
+                return {
+                    title: "Planifica tu cena",
+                    jsonBlockName: "AVAILABLE_RESTAURANTS_JSON",
+                    initialMessage: `Quiero salir a comer a un lugar seguro y rico, ¿cuál de estos restaurantes me recomiendas y qué podría pedir?`,
+                    systemPrompt:
+                        "Eres un asistente experto en gastronomía. Recomienda un restaurante de la lista que sea saludable y tenga buena ubicación. Crea un plan para una comida memorable.",
+                };
+            }
+
             if (list === "pool") {
                 return {
                     title: "Planifica tu día de piscina",

@@ -6,7 +6,7 @@ const CACHE_KEY_PREFIX = "dataService_cache_list_";
 const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 const CACHE_CHUNK_SIZE = 200 * 1024; // 200KB per chunk
 
-export type ListType = "pool" | "beach";
+export type ListType = "pool" | "beach" | "hotel" | "restaurant" | "tourism";
 export type DownloadSource = "network" | "cache-valid" | "cache-stale";
 
 export interface ListResponseMeta {
@@ -49,8 +49,14 @@ const clearChunkedCache = async (key: string): Promise<void> => {
 const CacheManager = {
     getCache: async (
         key: string,
-    ): Promise<{ data: string | null; isValid: boolean; timestamp: number | null }> => {
-        const cachedTimestamp = await AsyncStorage.getItem(getCacheTimestampKey(key));
+    ): Promise<{
+        data: string | null;
+        isValid: boolean;
+        timestamp: number | null;
+    }> => {
+        const cachedTimestamp = await AsyncStorage.getItem(
+            getCacheTimestampKey(key),
+        );
 
         if (!cachedTimestamp) {
             return { data: null, isValid: false, timestamp: null };
@@ -77,7 +83,9 @@ const CacheManager = {
                         (_, index) => getCacheChunkKey(key, index),
                     );
                     const chunkEntries = await AsyncStorage.multiGet(chunkKeys);
-                    const hasMissingChunk = chunkEntries.some(([, value]) => !value);
+                    const hasMissingChunk = chunkEntries.some(
+                        ([, value]) => !value,
+                    );
                     if (!hasMissingChunk) {
                         const data = chunkEntries
                             .map(([, value]) => value as string)
@@ -105,10 +113,9 @@ const CacheManager = {
             await AsyncStorage.setItem(key, data);
         } else {
             const chunks = splitIntoChunks(data, CACHE_CHUNK_SIZE);
-            const chunkPairs: [string, string][] = chunks.map((chunk, index) => [
-                getCacheChunkKey(key, index),
-                chunk,
-            ]);
+            const chunkPairs: [string, string][] = chunks.map(
+                (chunk, index) => [getCacheChunkKey(key, index), chunk],
+            );
 
             await AsyncStorage.removeItem(key);
             await AsyncStorage.multiSet(chunkPairs);
@@ -171,8 +178,11 @@ const dataService = {
 
         try {
             // Retrieve cached data
-            const { data: cachedData, isValid, timestamp } =
-                await CacheManager.getCache(cacheKey);
+            const {
+                data: cachedData,
+                isValid,
+                timestamp,
+            } = await CacheManager.getCache(cacheKey);
             const parsedCachedData = parseCachedItems(cachedData);
 
             if (parsedCachedData && isValid) {
@@ -216,7 +226,8 @@ const dataService = {
                 },
             };
         } catch (error) {
-            const { data: cachedData, timestamp } = await CacheManager.getCache(cacheKey);
+            const { data: cachedData, timestamp } =
+                await CacheManager.getCache(cacheKey);
             const parsedCachedData = parseCachedItems(cachedData);
 
             if (parsedCachedData && parsedCachedData.length > 0) {

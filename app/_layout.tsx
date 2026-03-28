@@ -40,9 +40,13 @@ export default function RootLayout() {
                 <Stack>
                     <Stack.Screen
                         name="(tabs)"
-                        options={{ headerShown: false }}
+                        options={{ headerShown: false, title: "SALUDABLES" }}
                     />
-                    <Stack.Screen name="+not-found" />
+                    <Stack.Screen name="profile" options={{ title: "" }} />
+                    <Stack.Screen
+                        name="+not-found"
+                        options={{ title: "NO ENCONTRADO" }}
+                    />
                 </Stack>
                 <ShareAppModal />
                 <StatusBar style="auto" />
