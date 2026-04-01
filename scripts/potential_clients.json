@@ -1,0 +1,134 @@
+[
+  {
+    "name": "El Pez On",
+    "type": "Restaurant",
+    "location": "Punta Hermosa, Lima",
+    "phone": "+51 997 539 821"
+  },
+  {
+    "name": "Trattoria Don Angelo",
+    "type": "Restaurant",
+    "location": "Punta Hermosa, Lima",
+    "phone": "+51 1 230 7675"
+  },
+  {
+    "name": "La Casa de Gloria",
+    "type": "Restaurant",
+    "location": "Punta Negra, Lima",
+    "phone": "+51 986 600 212"
+  },
+  {
+    "name": "Hotel Kahuna",
+    "type": "Hotel",
+    "location": "Punta Hermosa, Lima",
+    "phone": "+51 998 192 233"
+  },
+  {
+    "name": "Hostal Ocean Reef",
+    "type": "Hotel",
+    "location": "Punta Hermosa, Lima",
+    "phone": "+51 987 654 321"
+  },
+  {
+    "name": "Hospedaje Punta Hermosa Beach",
+    "type": "Hotel",
+    "location": "Punta Hermosa, Lima",
+    "phone": "+51 945 112 876"
+  },
+  {
+    "name": "Restaurante Chalana",
+    "type": "Restaurant",
+    "location": "Paracas, Ica",
+    "phone": "+51 56 534 111"
+  },
+  {
+    "name": "Misk'i Paracas",
+    "type": "Restaurant",
+    "location": "Paracas, Ica",
+    "phone": "+51 956 987 654"
+  },
+  {
+    "name": "Karamba Restobar",
+    "type": "Restaurant",
+    "location": "Paracas, Ica",
+    "phone": "+51 945 778 321"
+  },
+  {
+    "name": "San Agustin Paracas",
+    "type": "Hotel",
+    "location": "Paracas, Ica",
+    "phone": "+51 56 534 040"
+  },
+  {
+    "name": "La Hacienda Bahia Paracas",
+    "type": "Hotel",
+    "location": "Paracas, Ica",
+    "phone": "+51 56 534 545"
+  },
+  {
+    "name": "Hospedaje El Gamonal",
+    "type": "Hotel",
+    "location": "Paracas, Ica",
+    "phone": "+51 972 334 221"
+  },
+  {
+    "name": "Mamahuarmi Lodge",
+    "type": "Hotel",
+    "location": "Churin, Lima",
+    "phone": "+51 1 705 0000"
+  },
+  {
+    "name": "Hotel Acuario Churin",
+    "type": "Hotel",
+    "location": "Churin, Lima",
+    "phone": "+51 997 123 456"
+  },
+  {
+    "name": "Hotel Turistico Churin",
+    "type": "Hotel",
+    "location": "Churin, Lima",
+    "phone": "+51 945 332 198"
+  },
+  {
+    "name": "El Balcon de Churin",
+    "type": "Restaurant",
+    "location": "Churin, Lima",
+    "phone": "+51 956 112 334"
+  },
+  {
+    "name": "Restaurant Don Teo",
+    "type": "Restaurant",
+    "location": "Churin, Lima",
+    "phone": "+51 987 221 443"
+  },
+  {
+    "name": "La Cabana Churin",
+    "type": "Restaurant",
+    "location": "Churin, Lima",
+    "phone": "+51 965 778 990"
+  },
+  {
+    "name": "Dieciocho Ancon",
+    "type": "Restaurant",
+    "location": "Ancon, Lima",
+    "phone": "+51 1 552 1234"
+  },
+  {
+    "name": "El Mirador de Ancon",
+    "type": "Restaurant",
+    "location": "Ancon, Lima",
+    "phone": "+51 923 456 778"
+  },
+  {
+    "name": "Mar Adentro",
+    "type": "Restaurant",
+    "location": "Ancon, Lima",
+    "phone": "+51 945 998 221"
+  },
+  {
+    "name": "Hotel Costa Ancon",
+    "type": "Hotel",
+    "location": "Ancon, Lima",
+    "phone": "+51 1 552 8899"
+  }
+]

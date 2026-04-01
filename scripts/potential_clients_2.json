@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Hotel Carrera",
+    "type": "Hotel",
+    "location": "Lima, Lima, Peru",
+    "phone": "+51 1 6195200"
+  },
+  {
+    "name": "Hotel Señorional",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 2412173"
+  },
+  {
+    "name": "Tierra Viva Hotel Miraflores Larco",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 6371003"
+  },
+  {
+    "name": "Tierra Viva Hotel Miraflores Centro",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 4453613"
+  },
+  {
+    "name": "Ibis Budget Lima Miraflores",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 7301700"
+  },
+  {
+    "name": "Pullman Lima Miraflores",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 3131430"
+  },
+  {
+    "name": "El Tambo Uno Hotel",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 2194080"
+  },
+  {
+    "name": "El Tambo Dos Hotel",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 2000100"
+  },
+  {
+    "name": "Tinkus Hotel",
+    "type": "Hotel",
+    "location": "Miraflores, Lima, Peru",
+    "phone": "+51 1 2557593"
+  },
+  {
+    "name": "The Legend Paracas Resort",
+    "type": "Hotel",
+    "location": "Paracas, Ica, Peru",
+    "phone": "+51 56 581919"
+  }
+]
