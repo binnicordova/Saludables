@@ -23,7 +23,7 @@ Estamos seleccionando pocos aliados por zona para darles mayor visibilidad.
 
 ¿Te interesa que te cuente cómo funciona?`
 
-const data = require("./potential_clients_2.json")
+const data = require("./potential_clients.json")
 
 const DELAY_MS = Number(process.env.WSP_DELAY_MS || 1500)
 const SESSION_NAME = process.env.WSP_SESSION_NAME || "saludables-wsp"
@@ -104,26 +104,36 @@ const run = async () => {
   }
 
   for (const item of contacts) {
-    const chatId = toChatId(item.phone)
-    if (!chatId) {
+    const rawPhones = Array.isArray(item.phones) ? item.phones : (item.phone ? [item.phone] : [])
+    
+    if (rawPhones.length === 0) {
       failed += 1
-      console.error(`[FAIL] ${item.name}: invalid phone (${item.phone})`)
+      console.error(`[FAIL] ${item.name}: no phone numbers found`)
       continue
     }
 
     const text = message(item)
 
-    try {
-      const media = MessageMedia.fromFilePath(imagePath)
-      await client.sendMessage(chatId, media, { caption: text })
-      ok += 1
-      console.log(`[OK] ${item.name} -> ${chatId}`)
-    } catch (error) {
-      failed += 1
-      console.error(`[FAIL] ${item.name} -> ${chatId}: ${error.message}`)
-    }
+    for (const rawPhone of rawPhones) {
+      const chatId = toChatId(rawPhone)
+      if (!chatId) {
+        failed += 1
+        console.error(`[FAIL] ${item.name}: invalid phone (${rawPhone})`)
+        continue
+      }
 
-    await sleep(DELAY_MS)
+      try {
+        const media = MessageMedia.fromFilePath(imagePath)
+        await client.sendMessage(chatId, media, { caption: text })
+        ok += 1
+        console.log(`[OK] ${item.name} -> ${chatId}`)
+      } catch (error) {
+        failed += 1
+        console.error(`[FAIL] ${item.name} -> ${chatId}: ${error.message}`)
+      }
+
+      await sleep(DELAY_MS)
+    }
   }
 
   console.log(`Done. Sent: ${ok}, Failed: ${failed}`)

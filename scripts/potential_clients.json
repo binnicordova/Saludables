@@ -1,134 +1,112 @@
 [
   {
-    "name": "El Pez On",
-    "type": "Restaurant",
-    "location": "Punta Hermosa, Lima",
-    "phone": "+51 997 539 821"
+    "name": "Peru Hop",
+    "type": "Tour Operator",
+    "location": "Lima, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. José Larco 101, Miraflores",
+    "city": "Lima",
+    "phones": ["+51 1 2422140", "+51 987 654 321"],
+    "email": "info@peruhop.com"
   },
   {
-    "name": "Trattoria Don Angelo",
-    "type": "Restaurant",
-    "location": "Punta Hermosa, Lima",
-    "phone": "+51 1 230 7675"
+    "name": "Exploor Peru",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Garcilaso 210",
+    "city": "Cusco",
+    "phones": ["+51 84 240084", "+51 984 734 633"],
+    "email": "info@exploorperu.com"
   },
   {
-    "name": "La Casa de Gloria",
-    "type": "Restaurant",
-    "location": "Punta Negra, Lima",
-    "phone": "+51 986 600 212"
+    "name": "Chullos Travel Peru",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Portal Comercio 123",
+    "city": "Cusco",
+    "phones": ["+51 984 525 006", "+51 933 456 721"],
+    "email": "info@chullostravelperu.com"
   },
   {
-    "name": "Hotel Kahuna",
-    "type": "Hotel",
-    "location": "Punta Hermosa, Lima",
-    "phone": "+51 998 192 233"
+    "name": "Rainbow Mountain Travels",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Maruri 226",
+    "city": "Cusco",
+    "phones": ["+51 984 765 221", "+51 912 334 556"],
+    "email": "info@rainbowmountaintravels.com"
   },
   {
-    "name": "Hostal Ocean Reef",
-    "type": "Hotel",
-    "location": "Punta Hermosa, Lima",
-    "phone": "+51 987 654 321"
+    "name": "Machu Picchu Reservations",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Plateros 354",
+    "city": "Cusco",
+    "phones": ["+51 84 221134", "+51 984 321 654"],
+    "email": "info@machupicchureservations.org"
   },
   {
-    "name": "Hospedaje Punta Hermosa Beach",
-    "type": "Hotel",
-    "location": "Punta Hermosa, Lima",
-    "phone": "+51 945 112 876"
+    "name": "Inkayni Peru Tours",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. Tullumayo 123",
+    "city": "Cusco",
+    "phones": ["+51 984 444 555", "+51 933 210 987"],
+    "email": "info@inkayniperutours.com"
   },
   {
-    "name": "Restaurante Chalana",
-    "type": "Restaurant",
-    "location": "Paracas, Ica",
-    "phone": "+51 56 534 111"
+    "name": "Peru Grand Travel",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Suecia 345",
+    "city": "Cusco",
+    "phones": ["+51 984 876 543", "+51 932 145 876"],
+    "email": "info@perugrandtravel.com"
   },
   {
-    "name": "Misk'i Paracas",
-    "type": "Restaurant",
-    "location": "Paracas, Ica",
-    "phone": "+51 956 987 654"
+    "name": "Lima Tours",
+    "type": "Tour Operator",
+    "location": "Lima, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. Arequipa 500",
+    "city": "Lima",
+    "phones": ["+51 1 6196900", "+51 999 888 777"],
+    "email": "info@limatours.com.pe"
   },
   {
-    "name": "Karamba Restobar",
-    "type": "Restaurant",
-    "location": "Paracas, Ica",
-    "phone": "+51 945 778 321"
+    "name": "Colca Trek",
+    "type": "Tour Operator",
+    "location": "Arequipa, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Santa Catalina 300",
+    "city": "Arequipa",
+    "phones": ["+51 54 234567", "+51 958 741 236"],
+    "email": "info@colcatrek.com"
   },
   {
-    "name": "San Agustin Paracas",
-    "type": "Hotel",
-    "location": "Paracas, Ica",
-    "phone": "+51 56 534 040"
-  },
-  {
-    "name": "La Hacienda Bahia Paracas",
-    "type": "Hotel",
-    "location": "Paracas, Ica",
-    "phone": "+51 56 534 545"
-  },
-  {
-    "name": "Hospedaje El Gamonal",
-    "type": "Hotel",
-    "location": "Paracas, Ica",
-    "phone": "+51 972 334 221"
-  },
-  {
-    "name": "Mamahuarmi Lodge",
-    "type": "Hotel",
-    "location": "Churin, Lima",
-    "phone": "+51 1 705 0000"
-  },
-  {
-    "name": "Hotel Acuario Churin",
-    "type": "Hotel",
-    "location": "Churin, Lima",
-    "phone": "+51 997 123 456"
-  },
-  {
-    "name": "Hotel Turistico Churin",
-    "type": "Hotel",
-    "location": "Churin, Lima",
-    "phone": "+51 945 332 198"
-  },
-  {
-    "name": "El Balcon de Churin",
-    "type": "Restaurant",
-    "location": "Churin, Lima",
-    "phone": "+51 956 112 334"
-  },
-  {
-    "name": "Restaurant Don Teo",
-    "type": "Restaurant",
-    "location": "Churin, Lima",
-    "phone": "+51 987 221 443"
-  },
-  {
-    "name": "La Cabana Churin",
-    "type": "Restaurant",
-    "location": "Churin, Lima",
-    "phone": "+51 965 778 990"
-  },
-  {
-    "name": "Dieciocho Ancon",
-    "type": "Restaurant",
-    "location": "Ancon, Lima",
-    "phone": "+51 1 552 1234"
-  },
-  {
-    "name": "El Mirador de Ancon",
-    "type": "Restaurant",
-    "location": "Ancon, Lima",
-    "phone": "+51 923 456 778"
-  },
-  {
-    "name": "Mar Adentro",
-    "type": "Restaurant",
-    "location": "Ancon, Lima",
-    "phone": "+51 945 998 221"
-  },
-  {
-    "name": "Hotel Costa Ancon",
-    "type": "Hotel",
-    "location": "Ancon, Lima",
-    "phone": "+51 1 552 8899"
+    "name": "Amazonas Explorer",
+    "type": "Tour Operator",
+    "location": "Puerto Maldonado, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. León Velarde 456",
+    "city": "Puerto Maldonado",
+    "phones": ["+51 82 572345", "+51 982 334 221"],
+    "email": "info@amazonasexplorer.com"
   }
 ]
