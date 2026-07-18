@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Peru Hop",
+    "type": "Tour Operator",
+    "location": "Lima, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. José Larco 101, Miraflores",
+    "city": "Lima",
+    "phones": ["+51 1 2422140", "+51 987 654 321"],
+    "email": "info@peruhop.com"
+  },
+  {
+    "name": "Exploor Peru",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Garcilaso 210",
+    "city": "Cusco",
+    "phones": ["+51 84 240084", "+51 984 734 633"],
+    "email": "info@exploorperu.com"
+  },
+  {
+    "name": "Chullos Travel Peru",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Portal Comercio 123",
+    "city": "Cusco",
+    "phones": ["+51 984 525 006", "+51 933 456 721"],
+    "email": "info@chullostravelperu.com"
+  },
+  {
+    "name": "Rainbow Mountain Travels",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Maruri 226",
+    "city": "Cusco",
+    "phones": ["+51 984 765 221", "+51 912 334 556"],
+    "email": "info@rainbowmountaintravels.com"
+  },
+  {
+    "name": "Machu Picchu Reservations",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Plateros 354",
+    "city": "Cusco",
+    "phones": ["+51 84 221134", "+51 984 321 654"],
+    "email": "info@machupicchureservations.org"
+  },
+  {
+    "name": "Inkayni Peru Tours",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. Tullumayo 123",
+    "city": "Cusco",
+    "phones": ["+51 984 444 555", "+51 933 210 987"],
+    "email": "info@inkayniperutours.com"
+  },
+  {
+    "name": "Peru Grand Travel",
+    "type": "Tour Operator",
+    "location": "Cusco, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Suecia 345",
+    "city": "Cusco",
+    "phones": ["+51 984 876 543", "+51 932 145 876"],
+    "email": "info@perugrandtravel.com"
+  },
+  {
+    "name": "Lima Tours",
+    "type": "Tour Operator",
+    "location": "Lima, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. Arequipa 500",
+    "city": "Lima",
+    "phones": ["+51 1 6196900", "+51 999 888 777"],
+    "email": "info@limatours.com.pe"
+  },
+  {
+    "name": "Colca Trek",
+    "type": "Tour Operator",
+    "location": "Arequipa, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Calle Santa Catalina 300",
+    "city": "Arequipa",
+    "phones": ["+51 54 234567", "+51 958 741 236"],
+    "email": "info@colcatrek.com"
+  },
+  {
+    "name": "Amazonas Explorer",
+    "type": "Tour Operator",
+    "location": "Puerto Maldonado, Peru",
+    "latitude": "",
+    "longitude": "",
+    "address": "Av. León Velarde 456",
+    "city": "Puerto Maldonado",
+    "phones": ["+51 82 572345", "+51 982 334 221"],
+    "email": "info@amazonasexplorer.com"
+  }
+]

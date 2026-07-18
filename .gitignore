@@ -40,3 +40,8 @@ app-example
 
 #jest
 coverage/
+
+#wsp script
+.wwebjs_auth
+.wwebjs_cache
+

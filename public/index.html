@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Saludables | Creemos que disfrutar tambien puede ser saludable</title>
+		<meta
+			name="description"
+			content="Saludables te ayuda a descubrir playas, piscinas y restaurantes mas limpios y seguros para disfrutar en familia."
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+			:root {
+				/* Atomic Design: Design Tokens + Theme Palette */
+				color-scheme: light;
+				--color-bg-start: #f2f4ef;
+				--color-bg-end: #ece7dc;
+				--color-bg-highlight-1: rgba(255, 255, 255, 1);
+				--color-bg-highlight-2: rgba(213, 238, 243, 1);
+				--color-surface: rgba(255, 255, 255, 0.72);
+				--color-surface-strong: #ffffff;
+				--color-surface-soft: rgba(255, 255, 255, 0.88);
+				--color-text-primary: #0a3653;
+				--color-text-secondary: rgba(10, 54, 83, 0.76);
+				--color-text-muted: rgba(10, 54, 83, 0.72);
+				--color-text-soft: rgba(10, 54, 83, 0.84);
+				--color-brand-400: #3ab9cd;
+				--color-brand-600: #1b8ab1;
+				--color-accent-sun: #f5bc2f;
+				--color-success: #43a553;
+				--color-deal: #e28a13;
+				--color-pill-bg: rgba(10, 54, 83, 0.24);
+				--color-pill-text: #ffffff;
+				--color-feature-bg-start: #f4fbfd;
+				--color-feature-bg-end: #e4f5f8;
+				--color-feature-border: rgba(58, 185, 205, 0.35);
+				--color-feature-pill-bg: rgba(27, 138, 177, 0.15);
+				--color-feature-pill-text: #1b8ab1;
+				--color-deal-bg: rgba(226, 138, 19, 0.14);
+				--color-wave-glow: rgba(58, 185, 205, 0.22);
+				--color-sun-glow: rgba(245, 188, 47, 0.2);
+				--shadow-soft: 0 24px 60px rgba(12, 66, 96, 0.16);
+				--shadow-hover: 0 14px 30px rgba(12, 66, 96, 0.18);
+				--shadow-card: 0 16px 36px rgba(10, 54, 83, 0.08);
+				--shadow-featured: 0 18px 40px rgba(26, 110, 145, 0.18);
+				--shadow-icon: 0 10px 24px rgba(10, 54, 83, 0.2);
+				--radius-xl: 28px;
+				--radius-md: 16px;
+				--radius-pill: 999px;
+				--space-2: 0.5rem;
+				--space-3: 0.75rem;
+				--space-4: 1rem;
+				--space-5: 1.25rem;
+				--space-6: 1.5rem;
+				--space-8: 2rem;
+				--space-10: 2.5rem;
+				--space-12: 3rem;
+				--space-16: 4rem;
+				--max-content: 1180px;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					color-scheme: dark;
+					--color-bg-start: #09131a;
+					--color-bg-end: #0f1f29;
+					--color-bg-highlight-1: rgba(44, 86, 104, 0.35);
+					--color-bg-highlight-2: rgba(22, 84, 98, 0.4);
+					--color-surface: rgba(16, 36, 49, 0.78);
+					--color-surface-strong: #102431;
+					--color-surface-soft: rgba(19, 42, 57, 0.92);
+					--color-text-primary: #e8f4f8;
+					--color-text-secondary: rgba(232, 244, 248, 0.82);
+					--color-text-muted: rgba(232, 244, 248, 0.74);
+					--color-text-soft: rgba(232, 244, 248, 0.88);
+					--color-brand-400: #61cfdf;
+					--color-brand-600: #2daec6;
+					--color-accent-sun: #ffc74f;
+					--color-success: #63d07b;
+					--color-deal: #ffb347;
+					--color-pill-bg: rgba(232, 244, 248, 0.16);
+					--color-pill-text: #f7fcff;
+					--color-feature-bg-start: #123749;
+					--color-feature-bg-end: #0f3040;
+					--color-feature-border: rgba(97, 207, 223, 0.42);
+					--color-feature-pill-bg: rgba(97, 207, 223, 0.2);
+					--color-feature-pill-text: #8ae3f0;
+					--color-deal-bg: rgba(255, 179, 71, 0.2);
+					--color-wave-glow: rgba(97, 207, 223, 0.24);
+					--color-sun-glow: rgba(255, 199, 79, 0.18);
+					--shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.45);
+					--shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.45);
+					--shadow-card: 0 16px 36px rgba(0, 0, 0, 0.28);
+					--shadow-featured: 0 18px 40px rgba(0, 0, 0, 0.34);
+					--shadow-icon: 0 10px 24px rgba(0, 0, 0, 0.35);
+				}
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+				color: var(--color-text-primary);
+				background:
+					radial-gradient(circle at 14% 12%, var(--color-bg-highlight-1) 0%, rgba(255, 255, 255, 0) 42%),
+					radial-gradient(circle at 88% 0%, var(--color-bg-highlight-2) 0%, rgba(213, 238, 243, 0) 50%),
+					linear-gradient(145deg, var(--color-bg-start), var(--color-bg-end));
+				min-height: 100vh;
+			}
+
+			.layout-shell {
+				position: relative;
+				overflow: clip;
+			}
+
+			.layout-shell::before,
+			.layout-shell::after {
+				content: "";
+				position: fixed;
+				inset: auto;
+				z-index: -1;
+				border-radius: 50%;
+				pointer-events: none;
+			}
+
+			.layout-shell::before {
+				width: 42vw;
+				height: 42vw;
+				top: -14vw;
+				right: -12vw;
+				background: radial-gradient(circle, var(--color-wave-glow), rgba(58, 185, 205, 0));
+			}
+
+			.layout-shell::after {
+				width: 36vw;
+				height: 36vw;
+				bottom: -12vw;
+				left: -8vw;
+				background: radial-gradient(circle, var(--color-sun-glow), rgba(245, 188, 47, 0));
+			}
+
+			.container {
+				width: min(calc(100% - 2rem), var(--max-content));
+				margin-inline: auto;
+			}
+
+			/* Atoms */
+			.a-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-2);
+				border-radius: var(--radius-pill);
+				background: var(--color-pill-bg);
+				color: var(--color-pill-text);
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				padding: 0.55rem 1.2rem;
+				text-transform: uppercase;
+				font-size: 0.8rem;
+			}
+
+			.a-pill--success {
+				background: rgba(67, 165, 83, 0.15);
+				color: var(--color-success);
+			}
+
+			.a-title {
+				margin: var(--space-6) 0 var(--space-4);
+				font-size: clamp(2rem, 5.6vw, 4.15rem);
+				line-height: 1.05;
+				letter-spacing: -0.03em;
+				max-width: 14.5ch;
+			}
+
+			.a-subtitle {
+				margin: 0;
+				font-size: clamp(1rem, 2vw, 1.38rem);
+				line-height: 1.45;
+				color: var(--color-text-soft);
+				max-width: 52ch;
+			}
+
+			.a-button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border: 0;
+				border-radius: var(--radius-pill);
+				padding: 0.85rem 1.4rem;
+				font-weight: 700;
+				font-family: inherit;
+				text-decoration: none;
+				cursor: pointer;
+				transition: transform 180ms ease, box-shadow 220ms ease;
+			}
+
+			.a-button:hover {
+				transform: translateY(-1px);
+				box-shadow: var(--shadow-hover);
+			}
+
+			.a-button--primary {
+				color: #fff;
+				background: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-400));
+			}
+
+			.a-button--ghost {
+				color: var(--color-text-primary);
+				background: rgba(255, 255, 255, 0.8);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				.a-button--ghost {
+					background: rgba(232, 244, 248, 0.12);
+				}
+			}
+
+			.a-icon {
+				inline-size: 56px;
+				block-size: 56px;
+				border-radius: 15px;
+				object-fit: cover;
+				box-shadow: var(--shadow-icon);
+			}
+
+			.a-deal {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: var(--radius-pill);
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.04em;
+				padding: 0.3rem 0.55rem;
+				background: var(--color-deal-bg);
+				color: var(--color-deal);
+				text-transform: uppercase;
+			}
+
+			/* Molecules */
+			.m-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-3);
+			}
+
+			.m-stat {
+				background: var(--color-surface);
+				backdrop-filter: blur(4px);
+				border-radius: var(--radius-md);
+				padding: var(--space-4) var(--space-5);
+				min-width: 168px;
+			}
+
+			.m-stat__value {
+				margin: 0;
+				font-size: 1.45rem;
+				line-height: 1;
+				font-weight: 800;
+			}
+
+			.m-stat__label {
+				margin: 0.35rem 0 0;
+				color: var(--color-text-muted);
+				font-weight: 600;
+			}
+
+			.m-category {
+				display: grid;
+				place-items: center;
+				gap: var(--space-3);
+				text-align: center;
+				background: var(--color-surface-soft);
+				border-radius: 24px;
+				padding: var(--space-5);
+				box-shadow: var(--shadow-card);
+			}
+
+			.m-category--featured {
+				background: linear-gradient(145deg, var(--color-feature-bg-start), var(--color-feature-bg-end));
+				border: 2px solid var(--color-feature-border);
+				box-shadow: var(--shadow-featured);
+			}
+
+			.m-category__badge {
+				width: 72px;
+				aspect-ratio: 1;
+				border-radius: 50%;
+				display: grid;
+				place-items: center;
+				font-size: 2rem;
+				background: linear-gradient(140deg, #ffffff, #eaf6f8);
+			}
+
+			.m-category__title {
+				margin: 0;
+				font-size: 1.06rem;
+				font-weight: 700;
+			}
+
+			.m-category__meta {
+				display: flex;
+				align-items: center;
+				gap: var(--space-2);
+			}
+
+			.m-category__meta--stack {
+				flex-direction: column;
+			}
+
+			.m-feature-pill {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: var(--radius-pill);
+				padding: 0.32rem 0.72rem;
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				background: var(--color-feature-pill-bg);
+				color: var(--color-feature-pill-text);
+			}
+
+			.m-point {
+				background: var(--color-surface-soft);
+				border-radius: var(--radius-md);
+				padding: var(--space-5);
+				box-shadow: var(--shadow-card);
+			}
+
+			.m-point__title {
+				margin: 0 0 var(--space-2);
+				font-size: 1.08rem;
+				letter-spacing: -0.01em;
+			}
+
+			.m-point__desc {
+				margin: 0;
+				color: var(--color-text-muted);
+				line-height: 1.55;
+			}
+
+			.m-step {
+				background: var(--color-surface-strong);
+				border-radius: var(--radius-md);
+				padding: var(--space-5);
+				box-shadow: var(--shadow-card);
+			}
+
+			.m-step__number {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 34px;
+				height: 34px;
+				border-radius: 50%;
+				font-weight: 800;
+				background: var(--color-feature-pill-bg);
+				color: var(--color-feature-pill-text);
+				margin-bottom: var(--space-3);
+			}
+
+			.m-step h3 {
+				margin: 0 0 var(--space-2);
+				font-size: 1.08rem;
+			}
+
+			.m-step p {
+				margin: 0;
+				color: var(--color-text-muted);
+				line-height: 1.55;
+			}
+
+			.m-quote {
+				background: var(--color-surface-soft);
+				border-left: 4px solid var(--color-brand-400);
+				border-radius: var(--radius-md);
+				padding: var(--space-5);
+				box-shadow: var(--shadow-card);
+				display: none;
+				transition: opacity 300ms ease-in-out;
+				opacity: 0;
+			}
+
+			.m-quote.is-active {
+				display: block;
+				opacity: 1;
+			}
+
+			.o-community__testimonials {
+				min-height: 200px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			.m-quote p {
+				margin: 0;
+				line-height: 1.6;
+				color: var(--color-text-soft);
+			}
+
+			.m-quote footer {
+				margin-top: var(--space-3);
+				font-weight: 700;
+				color: var(--color-text-primary);
+			}
+
+			/* Organisms */
+			.o-header {
+				padding-top: var(--space-8);
+			}
+
+			.o-nav {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: var(--space-4);
+			}
+
+			.o-brand {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-3);
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.o-brand strong {
+				font-size: 1.05rem;
+				line-height: 1.1;
+				letter-spacing: -0.02em;
+			}
+
+			.o-hero {
+				margin: var(--space-10) 0 var(--space-16);
+				background: var(--color-surface);
+				border-radius: var(--radius-xl);
+				box-shadow: var(--shadow-soft);
+				overflow: hidden;
+			}
+
+			.o-hero__grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+			}
+
+			.o-hero__content {
+				padding: clamp(1.35rem, 4vw, 3.5rem);
+			}
+
+			.o-hero__meta {
+				margin-top: var(--space-8);
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-3);
+			}
+
+			.o-hero__image {
+				min-height: 460px;
+				background:
+					linear-gradient(100deg, rgba(12, 81, 124, 0.22), rgba(255, 255, 255, 0.06)),
+					url("./assets/banner.png") center / cover no-repeat;
+			}
+
+			.o-values {
+				margin-bottom: var(--space-16);
+			}
+
+			.o-values__panel {
+				background: var(--color-surface-strong);
+				border-radius: var(--radius-xl);
+				box-shadow: var(--shadow-soft);
+				padding: clamp(1rem, 2vw, 2rem);
+			}
+
+			.o-values__head {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: end;
+				justify-content: space-between;
+				gap: var(--space-4);
+				margin-bottom: var(--space-6);
+			}
+
+			.o-values__head h2 {
+				margin: 0;
+				font-size: clamp(1.4rem, 4vw, 2rem);
+				letter-spacing: -0.02em;
+			}
+
+			.o-values__grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: var(--space-4);
+			}
+
+			.o-business,
+			.o-how,
+			.o-community {
+				margin-bottom: var(--space-16);
+			}
+
+			.o-business__panel,
+			.o-how__panel,
+			.o-community__panel {
+				background: var(--color-surface-strong);
+				border-radius: var(--radius-xl);
+				box-shadow: var(--shadow-soft);
+				padding: clamp(1rem, 2vw, 2rem);
+			}
+
+			.o-section-head {
+				margin-bottom: var(--space-6);
+			}
+
+			.o-section-head h2 {
+				margin: 0 0 var(--space-2);
+				font-size: clamp(1.35rem, 4vw, 2rem);
+				letter-spacing: -0.02em;
+			}
+
+			.o-section-head p {
+				margin: 0;
+				color: var(--color-text-muted);
+				max-width: 64ch;
+				line-height: 1.5;
+			}
+
+			.o-business__grid,
+			.o-how__grid,
+			.o-community__grid {
+				display: grid;
+				gap: var(--space-4);
+			}
+
+			.o-business__grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.o-how__grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.o-community__grid {
+				grid-template-columns: 1.15fr 1fr;
+			}
+
+			.o-community__metrics {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: var(--space-4);
+			}
+
+			.o-cta {
+				margin-bottom: var(--space-16);
+			}
+
+			.o-cta__panel {
+				background: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-400));
+				color: #fff;
+				border-radius: var(--radius-xl);
+				box-shadow: var(--shadow-soft);
+				padding: clamp(1.2rem, 4vw, 2.6rem);
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: var(--space-4);
+			}
+
+			.o-cta__panel h2 {
+				margin: 0 0 var(--space-2);
+				font-size: clamp(1.4rem, 4vw, 2rem);
+				letter-spacing: -0.02em;
+			}
+
+			.o-cta__panel p {
+				margin: 0;
+				opacity: 0.92;
+				max-width: 56ch;
+			}
+
+			.o-cta__actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-3);
+			}
+
+			.o-cta__actions .a-button--ghost {
+				background: rgba(255, 255, 255, 0.92);
+				color: #0f4366;
+			}
+
+			.o-footer {
+				padding-bottom: var(--space-8);
+			}
+
+			.o-footer__inner {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				gap: var(--space-4);
+				color: var(--color-text-secondary);
+				font-weight: 600;
+			}
+
+			/* Utilities */
+			.u-reveal {
+				opacity: 0;
+				transform: translateY(20px);
+				animation: rise 680ms cubic-bezier(0.2, 0.7, 0.15, 1) forwards;
+			}
+
+			.u-delay-1 {
+				animation-delay: 120ms;
+			}
+
+			.u-delay-2 {
+				animation-delay: 220ms;
+			}
+
+			.u-delay-3 {
+				animation-delay: 320ms;
+			}
+
+			@keyframes rise {
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@media (max-width: 960px) {
+				.o-hero__grid {
+					grid-template-columns: 1fr;
+				}
+
+				.o-hero__image {
+					min-height: 360px;
+					order: -1;
+				}
+			}
+
+			@media (max-width: 760px) {
+				.o-business__grid,
+				.o-how__grid,
+				.o-community__grid,
+				.o-community__metrics {
+					grid-template-columns: 1fr;
+				}
+
+				.o-values__grid {
+					grid-template-columns: 1fr;
+				}
+
+				.o-nav {
+					align-items: start;
+					flex-direction: column;
+				}
+
+				.m-actions {
+					width: 100%;
+				}
+
+				.a-button {
+					flex: 1;
+					min-width: 150px;
+				}
+
+				.o-cta__actions {
+					width: 100%;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.u-reveal {
+					opacity: 1;
+					transform: none;
+					animation: none;
+				}
+
+				.a-button {
+					transition: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="layout-shell">
+			<header class="o-header container">
+				<nav class="o-nav">
+					<a class="o-brand u-reveal" href="#" aria-label="Inicio Saludables">
+						<img class="a-icon" src="./assets/adaptive-icon.png" alt="Icono app Saludables" />
+						<strong>Saludables</strong>
+					</a>
+					<div class="m-actions u-reveal u-delay-1">
+						<a
+							class="a-button a-button--ghost"
+							href="https://play.google.com/store/apps/details?id=com.saludables.app"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Conoce la app
+						</a>
+						<button class="a-button a-button--primary" type="button">Nominar un Lugar como saludable</button>
+					</div>
+				</nav>
+			</header>
+
+			<main class="container">
+				<section class="o-hero" aria-labelledby="hero-title">
+					<div class="o-hero__grid">
+						<div class="o-hero__content">
+							<span class="a-pill u-reveal">#Saludables</span>
+							<h1 id="hero-title" class="a-title u-reveal u-delay-1">
+								Creemos que disfrutar tambien puede ser saludable.
+							</h1>
+							<p class="a-subtitle u-reveal u-delay-2">
+								Descubre lugares mas limpios y seguros para compartir en familia: playas,
+								piscinas, hoteles, restaurantes y turismo recomendado por otros usuarios. Saludables certifica si un lugar es saludable o no saludable, alineado a criterios DIGESA, MINSA y certificacion validada por especialistas in situ.
+							</p>
+							<div class="o-hero__meta u-reveal u-delay-3">
+								<article class="m-stat">
+									<p class="m-stat__value">5 categorias</p>
+									<p class="m-stat__label">playas, piscinas, hoteles, restaurantes y turismo</p>
+								</article>
+								<article class="m-stat">
+									<p class="m-stat__value">10% OFF</p>
+									<p class="m-stat__label">hoteles y restaurantes participantes</p>
+								</article>
+							</div>
+						</div>
+						<div class="o-hero__image" role="img" aria-label="Familia disfrutando de la playa"></div>
+					</div>
+				</section>
+
+				<section class="o-values" aria-labelledby="values-title">
+					<div class="o-values__panel">
+						<div class="o-values__head">
+							<h2 id="values-title">Que lugar de tu ciudad consideras realmente saludable?</h2>
+							<span class="a-pill a-pill--success">
+								Vida saludable
+							</span>
+						</div>
+						<div class="o-values__grid">
+							<article class="m-category u-reveal u-delay-1">
+								<div class="m-category__badge" aria-hidden="true">🏖️</div>
+								<p class="m-category__title">Playas limpias</p>
+							</article>
+							<article class="m-category u-reveal u-delay-2">
+								<div class="m-category__badge" aria-hidden="true">🏊</div>
+								<p class="m-category__title">Piscinas cuidadas</p>
+							</article>
+							<article class="m-category u-reveal u-delay-3">
+								<div class="m-category__badge" aria-hidden="true">🥗</div>
+								<div class="m-category__meta">
+									<p class="m-category__title">Restaurantes saludables</p>
+									<span class="a-deal">10% OFF</span>
+								</div>
+							</article>
+							<article class="m-category u-reveal u-delay-3">
+								<div class="m-category__badge" aria-hidden="true">🏨</div>
+								<div class="m-category__meta">
+									<p class="m-category__title">Hoteles saludables</p>
+									<span class="a-deal">10% OFF</span>
+								</div>
+							</article>
+							<article class="m-category m-category--featured u-reveal u-delay-3">
+								<div class="m-category__badge" aria-hidden="true">🧭</div>
+								<div class="m-category__meta m-category__meta--stack">
+									<p class="m-category__title">Turismo saludable</p>
+									<span class="m-feature-pill">Coleccion de lugares turisticos</span>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section class="o-business" aria-labelledby="business-title">
+					<div class="o-business__panel">
+						<div class="o-section-head">
+							<h2 id="business-title">Una plataforma con impacto para familias y negocios locales</h2>
+							<p>
+								Saludables no solo recomienda lugares: impulsa confianza, incrementa visitas de calidad y promueve mejores estandares de
+								higiene en cada distrito mediante una certificacion clara: saludable o no saludable, con referencia a DIGESA, MINSA y validacion in situ por especialistas.
+							</p>
+						</div>
+						<div class="o-business__grid">
+							<article class="m-point u-reveal u-delay-1">
+								<h3 class="m-point__title">Para familias</h3>
+								<p class="m-point__desc">
+									Encuentran lugares confiables para disfrutar con ninos, con referencias seleccionadas.
+								</p>
+							</article>
+							<article class="m-point u-reveal u-delay-2">
+								<h3 class="m-point__title">Para hoteles y restaurantes</h3>
+								<p class="m-point__desc">
+									Mayor visibilidad ante audiencias con intencion de visita y beneficios de conversion como el 10% OFF.
+								</p>
+							</article>
+							<article class="m-point u-reveal u-delay-3">
+								<h3 class="m-point__title">Para la ciudad</h3>
+								<p class="m-point__desc">
+									Promueve cultura de bienestar, turismo responsable y decisiones informadas para todos.
+								</p>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section class="o-how" aria-labelledby="how-title">
+					<div class="o-how__panel">
+						<div class="o-section-head">
+							<h2 id="how-title">Como funciona Saludables</h2>
+							<p>Un flujo simple para descubrir, validar y nominar lugares saludables en minutos.</p>
+							<p>Marco de confianza: DIGESA, MINSA y certificacion validada por LLAAPP.com in situ.</p>
+						</div>
+						<div class="o-how__grid">
+							<article class="m-step u-reveal u-delay-1">
+								<span class="m-step__number">1</span>
+								<h3>Explora categorias</h3>
+								<p>Revisa playas, piscinas, turismo, hoteles y restaurantes segun lo que necesitas hoy.</p>
+							</article>
+							<article class="m-step u-reveal u-delay-2">
+								<span class="m-step__number">2</span>
+								<h3>Evalua con evidencia</h3>
+								<p>Compara recomendaciones de otros usuarios y revisa la certificacion de cada lugar: saludable o no saludable.</p>
+							</article>
+							<article class="m-step u-reveal u-delay-3">
+								<span class="m-step__number">3</span>
+								<h3>Nomina y comparte</h3>
+								<p>Impulsa los mejores espacios de tu ciudad para que mas familias los conozcan.</p>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section class="o-community" aria-labelledby="community-title">
+					<div class="o-community__panel">
+						<div class="o-section-head">
+							<h2 id="community-title">Saludables ya esta construyendo una ciudad mas saludable</h2>
+							<p>Confianza social + informacion util = mejores decisiones para salir y disfrutar.</p>
+						</div>
+						<div class="o-community__testimonials">
+							<article class="m-quote u-reveal u-delay-1 is-active">
+								<p>
+									"Con Saludables encontramos un hotel con buenas practicas y ademas obtuvimos descuento para toda la familia."
+								</p>
+								<footer>Andrea M. • Madre de familia</footer>
+							</article>
+							<article class="m-quote">
+								<p>
+									"Es la primera vez que puedo ir a una piscina publica con mis hijos sintiendome 100% tranquila por el agua."
+								</p>
+								<footer>Roberto G. • Padre de 3 niños</footer>
+							</article>
+							<article class="m-quote">
+								<p>
+									"Como ciclista, encontrar rutas y paradas saludables certificadas ha cambiado mis fines de semana por completo."
+								</p>
+								<footer>Lucía T. • Entusiasta del Deporte</footer>
+							</article>
+							<article class="m-quote">
+								<p>
+									"El descuento del 10% en restaurantes saludables nos motiva a comer mejor fuera de casa. ¡Excelente iniciativa!"
+								</p>
+								<footer>Marcos D. • Nutricionista</footer>
+							</article>
+						</div>
+							<div class="o-community__metrics">
+								<article class="m-stat u-reveal u-delay-2">
+									<p class="m-stat__value">+2,000</p>
+									<p class="m-stat__label">recomendaciones compartidas</p>
+								</article>
+								<article class="m-stat u-reveal u-delay-2">
+									<p class="m-stat__value">+350</p>
+									<p class="m-stat__label">lugares saludables destacados</p>
+								</article>
+								<article class="m-stat u-reveal u-delay-3">
+									<p class="m-stat__value">5 ciudades</p>
+									<p class="m-stat__label">con participacion activa</p>
+								</article>
+								<article class="m-stat u-reveal u-delay-3">
+									<p class="m-stat__value">92%</p>
+									<p class="m-stat__label">usuarios volverian a recomendar</p>
+								</article>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="o-cta" aria-labelledby="cta-title">
+					<div class="container">
+						<div class="o-cta__panel u-reveal u-delay-1">
+							<div>
+								<h2 id="cta-title">Lidera el cambio saludable en tu ciudad</h2>
+								<p>
+									Descarga la app para descubrir lugares recomendados o nomina hoy un espacio que merece ser reconocido.
+								</p>
+							</div>
+							<div class="o-cta__actions">
+								<a
+									class="a-button a-button--ghost"
+									href="https://play.google.com/store/apps/details?id=com.saludables.app"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Descargar en Google Play
+								</a>
+								<a class="a-button a-button--ghost" href="#">Nominar un lugar</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+
+			<footer class="o-footer container">
+				<div class="o-footer__inner">
+					<span>Saludables</span>
+					<span>#VidaSaludable #Bienestar #Familia</span>
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const testimonials = document.querySelectorAll(".o-community__testimonials .m-quote");
+				let currentIndex = 0;
+
+				if (testimonials.length > 1) {
+					setInterval(() => {
+						testimonials[currentIndex].classList.remove("is-active", "u-reveal");
+						currentIndex = (currentIndex + 1) % testimonials.length;
+						testimonials[currentIndex].classList.add("is-active");
+					}, 3000);
+				}
+			});
+		</script>
+	</body>
+</html>
