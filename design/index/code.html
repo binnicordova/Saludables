@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#930011",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffeddc",
+                        "on-background": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "inverse-primary": "#ffb3ad",
+                        "on-tertiary-fixed": "#261909",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "on-secondary-container": "#445a7f",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d9dadb",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#554430",
+                        "on-secondary-fixed-variant": "#30476a",
+                        "surface-tint": "#c0001a",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-fixed": "#001b3c",
+                        "tertiary-container": "#7e6954",
+                        "surface-container": "#edeeef",
+                        "on-primary-container": "#ffecea",
+                        "secondary-fixed-dim": "#b0c7f1",
+                        "inverse-on-surface": "#f0f1f2",
+                        "secondary": "#485f84",
+                        "background": "#f8f9fa",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d5e3ff",
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#e7bdb9",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-primary-fixed": "#410003",
+                        "inverse-surface": "#2e3132",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-error": "#ffffff",
+                        "primary": "#ad0017",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#dcc2a9",
+                        "tertiary-fixed": "#f9dec3",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-container": "#d91023",
+                        "tertiary": "#64513d",
+                        "secondary-container": "#bbd3fd",
+                        "outline": "#926e6b",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "80px",
+                        "gutter": "16px",
+                        "margin-mobile": "20px",
+                        "md": "24px",
+                        "xl": "64px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "xs": "4px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-background min-h-screen pb-32">
+    <!-- Top Navigation Bar -->
+    <header class="bg-surface/90 backdrop-blur-md fixed top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16 shadow-sm">
+        <div class="flex items-center gap-1">
+            <div class="marca-peru-style text-headline-md">
+                <span class="">Saludables</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-100">
+                <span class="material-symbols-outlined text-on-surface">search</span>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container overflow-hidden active:scale-95 duration-100 border border-outline-variant/30">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD94Xs7tZ7fE1-oDGZ1TISDV7k1CxG4U6SJoGsblbWWO8pmTqlzdCvqs070lGRJbOGb14NxWycLdczJTmrU31oLPbq89hHXpkKgKLee2XLhDai0P_yzQCQfEPKG3EpstnT3GinQ3hcFNbv0XJ7up0i_Dphqb7esjgAKrQbA0rc126gDCpF1r6b-bagbmM0_n2Pjq5wo4m7k4b0n1l6ZSVWoNejfeq4k1dltiTCoeSdYVReNNJ4UVMNQOrEv0KZdAYe93i1dDbaGmFsq" alt="User Profile">
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative h-[650px] w-full overflow-hidden">
+            <div class="absolute inset-0 w-full h-full">
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrd7VI-amxi-TF7tfHKX5XooWGyKMFY2O4tQqdFWGz9buy8X756DKbKks3Hpg3lHQMJZZK6k6HgG_zKYBhFqMmbJrUYOJ1os2FP7-mp4ksfs3MA-kqEsk7cqzhK0-efeKP4YStcfpJzjB5vYl3MozptXJ6S0pxbKJBs8txE21gLZB4lHQFjGFda3VLskbld0RKdxuOvLtWyi19sIw18sGx6m8vJm5W7aG5POIFAQX9jlyLN93n8j6h6-kGgpDmhGOCiPSzGVMYOQ7a')"></div>
+                <div class="absolute inset-0 hero-gradient"></div>
+            </div>
+            <div class="relative h-full flex flex-col justify-end px-margin-mobile pb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h1 class="font-display-lg text-display-lg text-white mb-2 leading-tight drop-shadow-md">
+                        Find Your <br>Healthy Escape
+                    </h1>
+                    <p class="font-body-lg text-white/95 mb-8 max-w-sm drop-shadow-sm">
+                        Discover the best free beaches and certified healthy pools across Peru's coast.
+                    </p>
+                    <!-- Search Bar -->
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+                        </div>
+                        <input class="w-full h-16 pl-14 pr-6 rounded-xl bg-white/95 backdrop-blur-md border-none focus:ring-2 focus:ring-primary text-on-surface placeholder:text-on-surface-variant/60 shadow-xl" placeholder="Search beaches or cities..." type="text">
+                        <button class="absolute right-3 top-3 bottom-3 px-6 bg-primary text-white rounded-lg font-label-md hover:brightness-110 active:scale-95 transition-all">
+                            Explore
+                        </button>
+                    </div><div class="mt-6">
+    <p class="font-label-sm text-white/90 mb-3 uppercase tracking-widest">Travel Profile</p>
+    <div class="flex overflow-x-auto custom-scrollbar gap-3 pb-2">
+        <button class="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white shadow-lg transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">directions_walk</span>
+            <span class="font-label-md whitespace-nowrap">Walker • &lt; 2km</span>
+        </button>
+        <button class="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dim/20 backdrop-blur-md text-white border border-white/20 hover:bg-white/10 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">explore</span>
+            <span class="font-label-md whitespace-nowrap">Explorer • 2-10km</span>
+        </button>
+        <button class="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dim/20 backdrop-blur-md text-white border border-white/20 hover:bg-white/10 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[20px]">travel_explore</span>
+            <span class="font-label-md whitespace-nowrap">Traveler • 10+km</span>
+        </button>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="mt-lg">
+            <div class="flex items-center justify-between px-margin-mobile mb-4">
+                <h2 class="font-headline-md text-headline-md text-on-background">Wellness Categories</h2>
+            </div>
+            <div class="flex overflow-x-auto custom-scrollbar px-margin-mobile gap-gutter pb-4">
+                <button class="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-transform active:scale-95">
+                    <span class="material-symbols-outlined">beach_access</span>
+                    <span class="font-label-md whitespace-nowrap">Free Beaches</span>
+                </button>
+                <button class="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95">
+                    <span class="material-symbols-outlined">pool</span>
+                    <span class="font-label-md whitespace-nowrap">Relaxing Pools</span>
+                </button>
+                <button class="flex-shrink-0 flex items-center gap-3 px-6 py-4 rounded-xl bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95">
+                    <span class="material-symbols-outlined">spa</span>
+                    <span class="font-label-md whitespace-nowrap">Coastal Wellness</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Top Free Beaches -->
+        <section class="mt-lg px-margin-mobile">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="font-headline-md text-headline-md text-on-background">Top Free Beaches</h2>
+                <button class="text-primary font-label-md">See All</button>
+            </div>
+            <div class="space-y-6">
+                <!-- Beach Card 1 -->
+                <div class="group bg-surface rounded-2xl overflow-hidden shadow-sm border border-outline-variant/30 transition-all hover:shadow-md">
+                    <div class="relative aspect-[16/9] w-full overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrd7VI-amxi-TF7tfHKX5XooWGyKMFY2O4tQqdFWGz9buy8X756DKbKks3Hpg3lHQMJZZK6k6HgG_zKYBhFqMmbJrUYOJ1os2FP7-mp4ksfs3MA-kqEsk7cqzhK0-efeKP4YStcfpJzjB5vYl3MozptXJ6S0pxbKJBs8txE21gLZB4lHQFjGFda3VLskbld0RKdxuOvLtWyi19sIw18sGx6m8vJm5W7aG5POIFAQX9jlyLN93n8j6h6-kGgpDmhGOCiPSzGVMYOQ7a" alt="Máncora Beach">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-600 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Free Access</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-headline-md text-on-surface">Máncora</h3>
+                            <div class="flex items-center gap-1 text-primary">
+                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="font-label-md">4.8</span>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-on-surface-variant mb-4">Golden sands and perfect waves for a natural detox.</p>
+                        <div class="flex items-center gap-4 text-on-surface-variant">
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                <span class="font-label-sm">Piura</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">wb_sunny</span>
+                                <span class="font-label-sm">Sunny</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beach Card 2 -->
+                <div class="group bg-surface rounded-2xl overflow-hidden shadow-sm border border-outline-variant/30 transition-all hover:shadow-md">
+                    <div class="relative aspect-[16/9] w-full overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhdYLsk0St8WaHgr0gN_Hd1NYYPvPyYNM894PJPeAN3O5REdLDZCdheuGhX7MeX68Fp8U3WHm9vcEIWRRtrdNEP0WaWVGnrtKoLtMBtOOAhYdRlO5-2ZmUELeMfJwPYJrWdViDxqCOQBR-xEBjB1YZw9tTVOq9GvzQb5zoD2nlt64w-RpTUFswKWd73v1ghfOIHuKk1hwITDrObk1U9GwU15g-7DXdva52SlH_GYEF2b53aZvOaXOFYSN3LUEFbjOYyhdY-PyhbxCX" alt="Paracas Coast">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-600 text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Free Access</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-headline-md text-on-surface">La Mina, Paracas</h3>
+                            <div class="flex items-center gap-1 text-primary">
+                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="font-label-md">4.9</span>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-on-surface-variant mb-4">Crystal clear turquoise waters in a protected reserve.</p>
+                        <div class="flex items-center gap-4 text-on-surface-variant">
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                <span class="font-label-sm">Ica</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[18px]">waves</span>
+                                <span class="font-label-sm">Calm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curated Pools-->
+        <section class="mt-xl px-margin-mobile">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="font-headline-md text-headline-md text-on-background">Curated Healthy Pools</h2>
+                <button class="text-primary font-label-md">View All</button>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Pool Card referencing image_5 Saludable status -->
+                <div class="bg-surface rounded-2xl overflow-hidden shadow-sm border border-outline-variant/30">
+                    <div class="relative h-48">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVWrPF8nKV6caF1vHX9LjFSg1YC97XSzxMLh8MzbMeT_LngCKVOVA9RkVEPOHm1E3r-SJ20HT-tSlw5ztMLajt1rSLx2UbQ2oPInydyLn7Nh-rJ1zJvTF5fIGa41RYol5HPC0cLr6FCP8VgrMxU91bFBb2dP_UFhEvAentSHXvCcdHEjEhv258IBFXND1nj_MrwNI2UxZYJRgiU9kYyxNI1e-WVk7icXffjmeq6GUiGdAh6dX2jPI5D7sYf7pSYl7135W4fM1Mm7xX" alt="Mesa de Piedra Pool">
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span class="bg-green-100 text-green-800 text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-green-200">
+                                <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                SALUDABLE
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-headline-md text-on-surface mb-1">Restaurant Mesa de Piedra I</h3>
+                        <p class="font-body-md text-on-surface-variant mb-2">Certified microbiological quality and premium facilities.</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-sm font-label-md text-on-surface-variant">Cieneguilla, Lima</span>
+                            <button class="bg-secondary text-white px-4 py-2 rounded-lg text-sm font-label-md">Get Route</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Complementary Services -->
+        <section class="mt-xl px-margin-mobile">
+            <h2 class="font-headline-md text-headline-md text-on-background mb-6">Complete Your Stay</h2>
+            <div class="grid grid-cols-3 gap-4">
+                <button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:bg-surface-container-high transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary">map</span>
+                    </div>
+                    <span class="font-label-sm text-on-surface">Tourism</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:bg-surface-container-high transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-secondary">hotel</span>
+                    </div>
+                    <span class="font-label-sm text-on-surface">Hotels</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20 hover:bg-surface-container-high transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-tertiary">restaurant</span>
+                    </div>
+                    <span class="font-label-sm text-on-surface">Dining</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="mt-xl px-margin-mobile pb-12">
+            <div class="relative bg-primary-container text-on-primary-container rounded-3xl p-8 overflow-hidden shadow-lg">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+                <div class="relative z-10">
+                    <h2 class="font-headline-lg text-headline-lg-mobile mb-2">Ready for a healthy break?</h2>
+                    <p class="font-body-md opacity-90 mb-6">Get weekly updates on beach health status and new pool certifications.</p>
+                    <div class="flex flex-col gap-3">
+                        <input class="w-full h-14 rounded-xl border-none bg-white/20 focus:bg-white focus:text-on-surface transition-all px-4 placeholder:text-white/60" placeholder="Email address" type="email">
+                        <button class="w-full h-14 bg-white text-primary rounded-xl font-label-md hover:bg-surface-container-low active:scale-95 transition-all shadow-sm">
+                            Subscribe Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface/95 backdrop-blur-md shadow-[0px_-4px_20px_rgba(0,0,0,0.05)] h-20 border-t border-outline-variant/30">
+        <button class="flex flex-col items-center justify-center text-primary px-3 py-1">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">beach_access</span>
+            <span class="font-label-sm">Playas</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">pool</span>
+            &lt;</button></nav></body></html>

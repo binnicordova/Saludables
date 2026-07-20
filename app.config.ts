@@ -5,8 +5,8 @@ const EAS_OWNER = process.env.EAS_OWNER; // by https://www.binnicordova.com
 const EAS_SLUG = "saludables";
 const EAS_PROJECT_ID = process.env.EAS_PROJECT_ID;
 
-const VERSION = "0.0.21";
-const VERSION_CODE = 24;
+const VERSION = "0.0.22";
+const VERSION_CODE = 25;
 
 const APP_VARIANTS = {
     development: {
@@ -120,6 +120,9 @@ export default ({ config }: { config: ExpoConfig }): ExpoConfig => ({
         "expo-asset",
         "expo-localization",
         "expo-web-browser",
+        "expo-image",
+        "expo-sharing",
+        "expo-status-bar"
     ],
     experiments: {
         typedRoutes: true,

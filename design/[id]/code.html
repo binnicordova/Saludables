@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Máncora Beach - Marca Perú</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Manrope:wght@400;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#c0001a",
+                        "tertiary": "#64513d",
+                        "surface-container-high": "#e7e8e9",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "primary": "#ad0017",
+                        "on-primary-container": "#ffecea",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-container": "#7e6954",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "primary-fixed": "#ffdad6",
+                        "outline-variant": "#e7bdb9",
+                        "on-tertiary-fixed": "#261909",
+                        "on-primary-fixed": "#410003",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#b0c7f1",
+                        "on-secondary-fixed": "#001b3c",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#d5e3ff",
+                        "on-tertiary-container": "#ffeddc",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-error": "#ffffff",
+                        "outline": "#926e6b",
+                        "inverse-primary": "#ffb3ad",
+                        "on-secondary-fixed-variant": "#30476a",
+                        "tertiary-fixed-dim": "#dcc2a9",
+                        "primary-container": "#d91023",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed-variant": "#930011",
+                        "surface-dim": "#d9dadb",
+                        "secondary-container": "#bbd3fd",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#445a7f",
+                        "tertiary-fixed": "#f9dec3",
+                        "on-surface": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#554430",
+                        "on-background": "#191c1d",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#485f84",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "margin-desktop": "80px",
+                        "xs": "4px",
+                        "lg": "40px",
+                        "gutter": "16px",
+                        "xl": "64px",
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Manrope', sans-serif;
+            color: #191c1d;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.8) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .scrolling-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .scrolling-wrapper {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="pb-32">
+<!-- Hero Section -->
+<header class="relative h-[450px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, wide-angle shot of Máncora Beach in northern Peru during a golden sunset. The turquoise Pacific Ocean waves gently crash onto pristine golden sands, while iconic palm trees sway in the coastal breeze. The warm sunlight reflects off the water, creating a vibrant, high-end travel aesthetic. The atmosphere is serene and luxurious, capturing the sophisticated 'Marca Perú' identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFWSFR3eD8TluxJNWl61Yuj_t_3FkQoH_lwqP-cSetxO66LPzDYXwxHvY9CUci-yMpJDfZyRCCcrk-AfJPlzqgs9oWVa5CaYpT_fKUmMCh7Akw2IHophN46Q_hQArapJdXr2rABrLqKJ_y3qdnXZLNWPEkWoZv9xiEPPbd0qhydePvYQgh-P-9mBUYp-CKNwfJigXN_MG6L2H0fL7T1JmwuUMGho1Pd_6fJIMU_HpIcpy4xU09ertTeYI64WKmveLb7wFEKBSV--EI')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+<!-- Top Toolbar -->
+<div class="absolute top-0 left-0 right-0 p-margin-mobile flex justify-between items-center z-10">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-all active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-all active:scale-95">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-all active:scale-95">
+<span class="material-symbols-outlined filled-icon text-white" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+</div>
+<!-- Hero Content -->
+<div class="absolute bottom-0 left-0 right-0 p-margin-mobile">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#4CAF50] text-white rounded-full mb-3 shadow-lg">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Saludable</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-white mb-2">Máncora Beach</h1>
+<div class="flex items-center gap-3 text-white/90">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-label-md text-label-md">Piura, Peru</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-white/50"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">waves</span>
+<span class="font-label-md text-label-md">Pacific Ocean</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-margin-mobile mt-lg md:mt-xl">
+<!-- Key Metadata Grid -->
+<section class="grid grid-cols-3 gap-gutter mb-lg">
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">thermostat</span>
+<span class="font-headline-md text-headline-md text-on-surface">28°C</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Weather</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">water_drop</span>
+<span class="font-headline-md text-headline-md text-on-surface">Excel.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Quality</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">directions_walk</span>
+<span class="font-headline-md text-headline-md text-on-surface">15km</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Distance</span>
+</div>
+</section>
+<!-- About the Beach -->
+<section class="mb-lg">
+<h2 class="font-headline-md text-headline-md mb-sm text-on-surface">About the Beach</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Experience the magic of Máncora, Peru's premier coastal sanctuary. Renowned for its <span class="text-primary font-bold">golden sands</span> and world-class surfing breaks, this destination offers a unique blend of high-energy water sports and profound wellness atmosphere. Whether you're catching the legendary left-hand point break or practicing sunrise yoga by the shore, Máncora embodies the spirit of coastal rejuvenation.
+            </p>
+</section>
+<!-- Health & Safety Details -->
+<section class="mb-lg bg-surface-container p-6 rounded-2xl shadow-[0px_4px_20px_rgba(72,95,132,0.04)]">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Health & Safety</h2>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">microbiology</span>
+<span class="font-body-md text-body-md">Microbiological Quality</span>
+</div>
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full font-label-sm text-label-sm">PASSED</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">eco</span>
+<span class="font-body-md text-body-md">Facilities</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Eco-friendly</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">support_agent</span>
+<span class="font-body-md text-body-md">Lifeguard Service</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">08:00 - 18:00</span>
+</div>
+</div>
+</section>
+<!-- Complementary Experiences -->
+<section class="mb-lg">
+<div class="flex justify-between items-end mb-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Wellness Pairings</h2>
+<button class="font-label-md text-label-md text-primary">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-gutter scrolling-wrapper pb-4 -mx-margin-mobile px-margin-mobile">
+<!-- Restaurant Card -->
+<div class="flex-none w-[280px] bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="h-40 bg-cover bg-center" data-alt="A beautiful overhead shot of a vibrant acai bowl and organic salads at Nuna Raymi restaurant. The table is made of rustic wood, decorated with Peruvian textiles. The lighting is bright and natural, emphasizing the fresh, healthy ingredients and the sophisticated wellness vibe." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-Ejzx4brNlTVKxNHbcicxAeOxrqpuZDYbx425uytfEf5qSgqmlYDlVIdC7wlvLX7Ov7vI8cfnQN8m48dQ-DWX4m027OTrBFz-nrVV2GeH71nyVHrJYH99uljtSVwwnDVdLtDP3NFoEi3WanFSQclYkxM4oW-bMxg-md6igZcDP0ArhZG33BLWNpQBCe0qQOwU4pPIQ47lE8K22mh-O10di6tvkQkQGD721jEXB5l26gSZH2esFobSVLSESQe7AjydnpRU4zcL1Ykf')"></div>
+<div class="p-4">
+<div class="flex items-center gap-1 text-primary mb-1">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+<span class="font-label-sm text-label-sm uppercase">Gastronomy</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface mb-1">Nuna Raymi - Organic Bowls</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">4.9 ★ • 1.2km away</p>
+</div>
+</div>
+<!-- Hotel Card -->
+<div class="flex-none w-[280px] bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="h-40 bg-cover bg-center" data-alt="A luxury wellness hotel room at Pacific Zen Villa with a direct view of the Máncora ocean. The interior features minimalist wooden furniture, white linen bedding, and organic textures. Large sliding glass doors open to a private balcony. The morning light is soft and warm, reflecting a peaceful, premium sanctuary." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDX8nhG0Vr8SMknruoJkV7OurNviPIxbjk-wexFZgNxpg6iPaeLFq3ZRylctg47P0eL9FfijE8V4I1isJUPIqCt8Wlt1UUJvvcmH1DnZaoWcVQffCQThEKigtwMFNyX0LDXGmxsBRjsUu1N6pvpHugn0HGzgqOdWcGlYf9XQ5YSfFZeaX142-jEi09wPo33t3a6aW8pI_JCYQRXtqYuMV5SsELLFkofhrlb1xhgZIgDDW4sl0KTYrnJF8vOJuj2Jbtj3UoGEqC3dXXr')"></div>
+<div class="p-4">
+<div class="flex items-center gap-1 text-primary mb-1">
+<span class="material-symbols-outlined text-[16px]">spa</span>
+<span class="font-label-sm text-label-sm uppercase">Wellness Hotel</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface mb-1">Pacific Zen Villa</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">5.0 ★ • 0.5km away</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-0 left-0 right-0 p-margin-mobile bg-gradient-to-t from-background via-background/80 to-transparent pt-8 z-50">
+<div class="max-w-[1440px] mx-auto">
+<button class="w-full bg-primary-container text-on-primary-container h-16 rounded-full flex items-center justify-center gap-3 font-headline-md shadow-xl hover:bg-primary transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined">route</span>
+<span>Get Route</span>
+</button>
+</div>
+</div>
+<!-- Hidden Navigation Shell Logic (Suppressed for Detail Screen as per instructions) -->
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple scroll parallax for hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('header .bg-cover');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.4}px)`;
+            }
+        });
+    </script>
+</body></html>

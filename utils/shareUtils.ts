@@ -30,7 +30,7 @@ export async function shareText(
  * Handles downloading the asset and preparing it in a cache folder.
  */
 export async function shareAssetImage(
-    assetModule: any,
+    assetModule: string | number,
     filename: string,
     dialogTitle?: string,
 ): Promise<boolean> {
@@ -48,7 +48,12 @@ export async function shareAssetImage(
             });
         }
 
-        await FileSystem.copyAsync({ from: asset.localUri!, to: dest });
+        const localUri = asset.localUri;
+        if (!localUri) {
+            throw new Error("No local URI available for asset");
+        }
+
+        await FileSystem.copyAsync({ from: localUri, to: dest });
 
         if (await Sharing.isAvailableAsync()) {
             await Sharing.shareAsync(dest, {

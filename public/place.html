@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Saludables | Creador de Lugares</title>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+			crossorigin=""
+		/>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+			:root {
+				--bg-1: #f4f0e7;
+				--bg-2: #d8e8e8;
+				--bg-3: #f8fbff;
+				--ink: #153043;
+				--ink-soft: rgba(21, 48, 67, 0.78);
+				--brand: #0f766e;
+				--brand-alt: #d97706;
+				--line: rgba(21, 48, 67, 0.16);
+				--surface: rgba(255, 255, 255, 0.84);
+				--surface-strong: #ffffff;
+				--ok: #166534;
+				--error: #b91c1c;
+				--warn: #92400e;
+				--radius-xl: 24px;
+				--radius-lg: 16px;
+				--radius-md: 12px;
+				--shadow: 0 24px 56px rgba(16, 45, 67, 0.14);
+				--shadow-focus: 0 0 0 3px rgba(15, 118, 110, 0.2);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+				color: var(--ink);
+				background:
+					radial-gradient(circle at 8% 0%, rgba(217, 119, 6, 0.18), transparent 37%),
+					radial-gradient(circle at 100% 8%, rgba(15, 118, 110, 0.2), transparent 42%),
+					linear-gradient(130deg, var(--bg-1), var(--bg-2) 52%, var(--bg-3));
+				min-height: 100vh;
+				padding: 1rem;
+			}
+
+			.shell {
+				width: min(1100px, 100%);
+				margin: 0 auto;
+				border-radius: var(--radius-xl);
+				background: var(--surface);
+				box-shadow: var(--shadow);
+				border: 1px solid rgba(255, 255, 255, 0.85);
+				overflow: hidden;
+				backdrop-filter: blur(8px);
+			}
+
+			.hero {
+				padding: 1.4rem 1.2rem;
+				color: #fff;
+				background: linear-gradient(
+					125deg,
+					rgba(15, 118, 110, 0.97),
+					rgba(21, 48, 67, 0.92) 58%,
+					rgba(217, 119, 6, 0.94)
+				);
+			}
+
+			.hero h1 {
+				margin: 0;
+				font-size: clamp(1.3rem, 4vw, 2.2rem);
+				line-height: 1.1;
+			}
+
+			.hero p {
+				margin: 0.75rem 0 0;
+				max-width: 70ch;
+				color: rgba(255, 255, 255, 0.9);
+				font-size: 0.95rem;
+				line-height: 1.45;
+			}
+
+			form {
+				display: grid;
+				gap: 1rem;
+				padding: 1rem;
+			}
+
+			.panel {
+				background: var(--surface-strong);
+				border: 1px solid var(--line);
+				border-radius: var(--radius-lg);
+				padding: 1rem;
+			}
+
+			.panel h2 {
+				margin: 0 0 0.8rem;
+				font-size: 0.88rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--ink-soft);
+			}
+
+			.grid {
+				display: grid;
+				gap: 0.7rem;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.full {
+				grid-column: 1 / -1;
+			}
+
+			label {
+				display: grid;
+				gap: 0.35rem;
+				font-size: 0.82rem;
+				color: var(--ink-soft);
+			}
+
+			input,
+			textarea,
+			select,
+			button {
+				font: inherit;
+			}
+
+			input,
+			textarea,
+			select {
+				width: 100%;
+				padding: 0.66rem 0.72rem;
+				border: 1px solid var(--line);
+				border-radius: var(--radius-md);
+				background: #fff;
+				color: var(--ink);
+			}
+
+			input:focus,
+			textarea:focus,
+			select:focus {
+				outline: 0;
+				border-color: var(--brand);
+				box-shadow: var(--shadow-focus);
+			}
+
+			textarea {
+				resize: vertical;
+				min-height: 96px;
+			}
+
+			.input-inline {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 0.55rem;
+				align-items: end;
+			}
+
+			.button,
+			.button-ghost,
+			.button-danger {
+				border: 0;
+				border-radius: 999px;
+				padding: 0.7rem 1.15rem;
+				cursor: pointer;
+				font-weight: 700;
+				transition: transform 160ms ease;
+			}
+
+			.button {
+				color: #fff;
+				background: linear-gradient(120deg, var(--brand), var(--brand-alt));
+			}
+
+			.button-ghost {
+				color: var(--ink);
+				background: rgba(21, 48, 67, 0.09);
+			}
+
+			.button-danger {
+				color: #8f1d1d;
+				background: #fde2e2;
+				padding-inline: 0.85rem;
+				height: 40px;
+				border-radius: 10px;
+			}
+
+			.button:hover,
+			.button-ghost:hover,
+			.button-danger:hover {
+				transform: translateY(-1px);
+			}
+
+			.hint {
+				margin: 0.35rem 0 0;
+				font-size: 0.78rem;
+				line-height: 1.4;
+				color: var(--ink-soft);
+			}
+
+			.controls-list {
+				display: grid;
+				gap: 0.65rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.control-row {
+				display: grid;
+				gap: 0.6rem;
+				grid-template-columns: minmax(0, 1fr) 140px 42px;
+				align-items: end;
+			}
+
+			.map-wrap {
+				display: grid;
+				gap: 0.65rem;
+			}
+
+			#map {
+				width: 100%;
+				height: 320px;
+				border-radius: var(--radius-md);
+				border: 1px solid var(--line);
+				overflow: hidden;
+			}
+
+			.image-preview-wrap {
+				display: grid;
+				gap: 0.65rem;
+			}
+
+			.image-preview {
+				width: 100%;
+				max-height: 320px;
+				object-fit: cover;
+				border: 1px solid var(--line);
+				border-radius: var(--radius-md);
+				background: #f6f8fb;
+				display: none;
+			}
+
+			.image-preview.active {
+				display: block;
+			}
+
+			.upload-status,
+			.status {
+				font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+				font-size: 0.8rem;
+				border: 1px solid var(--line);
+				border-radius: var(--radius-md);
+				padding: 0.7rem 0.8rem;
+				background: #fff;
+				white-space: pre-wrap;
+			}
+
+			.upload-status.ok,
+			.status.ok {
+				color: var(--ok);
+				border-color: rgba(22, 101, 52, 0.32);
+				background: #effcf5;
+			}
+
+			.upload-status.error,
+			.status.error {
+				color: var(--error);
+				border-color: rgba(185, 28, 28, 0.34);
+				background: #fff1f1;
+			}
+
+			.actions {
+				display: flex;
+				gap: 0.65rem;
+				justify-content: flex-end;
+				flex-wrap: wrap;
+			}
+
+			@media (max-width: 900px) {
+				.grid {
+					grid-template-columns: 1fr;
+				}
+
+				.full-mobile {
+					grid-column: 1 / -1;
+				}
+
+				.control-row {
+					grid-template-columns: 1fr;
+				}
+
+				.button-danger {
+					width: 100%;
+				}
+
+				#map {
+					height: 280px;
+				}
+			}
+
+			@media (max-width: 560px) {
+				body {
+					padding: 0.65rem;
+				}
+
+				.hero,
+				form,
+				.panel {
+					padding: 0.9rem;
+				}
+
+				.input-inline {
+					grid-template-columns: 1fr;
+				}
+
+				.actions .button,
+				.actions .button-ghost {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="shell">
+			<section class="hero">
+				<h1>Creador de Lugares Publicos</h1>
+				<p>
+					Completa este formulario para publicar hoteles, restaurantes o sitios
+					turisticos. Solo llena los datos basicos, sube una foto y presiona
+					"Crear lugar". Nosotros hacemos el resto.
+				</p>
+			</section>
+
+			<form id="place-form" novalidate>
+				<input type="hidden" name="id" />
+				<section class="panel">
+					<h2>Configuracion Inicial</h2>
+					<div class="grid">
+						<label class="full">
+							Tipo de lugar
+							<select name="type" required>
+								<option value="hotels">Hoteles</option>
+								<option value="restaurants">Restaurantes</option>
+								<option value="tourisms">Turismo</option>
+							</select>
+						</label>
+					</div>
+					<p class="hint">Al guardar, enviaremos la informacion a tu endpoint createPlaceItem.</p>
+				</section>
+
+				<section class="panel">
+					<h2>Datos del Lugar</h2>
+					<div class="grid">
+						<label>
+							Nombre del lugar
+							<input name="strNombre" required placeholder="Ejemplo: Playa Las Sombrillas" />
+						</label>
+						<label>
+							Tipo o categoria
+							<input name="strTipoPlaya" required placeholder="Ejemplo: Playa urbana, Hotel familiar" />
+						</label>
+						<label style="display: none;">
+							ID de departamento
+							<input name="idDepartamento" required placeholder="Ejemplo: 15" value="15" />
+						</label>
+						<label style="display: none;">
+							ID de provincia
+							<input name="idProvincia" required placeholder="Ejemplo: 01" value="01" />
+						</label>
+						<label style="display: none;">
+							ID de distrito
+							<input name="idDistrito" required placeholder="Ejemplo: 14" value="14" />
+						</label>
+						<label class="full">
+							Direccion
+							<input name="strDireccion" required placeholder="Ejemplo: Av. Costanera 123" />
+						</label>
+						<label style="display: none;">
+							Calidad sanitaria (texto)
+							<input name="strCalidadSanitaria" required placeholder="Ejemplo: Saludable" value="Saludable" />
+						</label>
+						<label style="display: none;">
+							Clave de calidad sanitaria
+							<input name="keyCalidadSanitaria" required placeholder="Ejemplo: SALUDABLE" value="SALUDABLE" />
+						</label>
+						<label class="full">
+							Descripcion
+							<textarea name="strDescripcion" required placeholder="Describe el lugar en pocas lineas: servicios, entorno y recomendaciones."></textarea>
+						</label>
+						<label style="display: none;">
+							Fecha de ultima inspeccion
+							<input name="dateUltimaInspeccion" type="date" required value="2026-07-19" />
+						</label>
+						<label style="display: none;">
+							Resumen de la ultima inspeccion
+							<input name="strUltimaInspeccion" required placeholder="Ejemplo: Apta para banistas" value="Saludable" />
+						</label>
+						<label>
+							Departamento
+							<input name="strDepartamento" required placeholder="Ejemplo: Lima" />
+						</label>
+						<label>
+							Provincia
+							<input name="strProvincia" required placeholder="Ejemplo: Lima" />
+						</label>
+						<label>
+							Distrito
+							<input name="strDistrito" required placeholder="Ejemplo: Chorrillos" />
+						</label>
+						<label class="full" style="display: none;">
+							Fuente de informacion
+							<input name="strSource" required placeholder="Ejemplo: DIGESA" value="DIGESA" />
+						</label>
+					</div>
+				</section>
+
+				<section class="panel">
+					<h2>Ubicacion en el Mapa</h2>
+					<div class="map-wrap">
+						<div class="grid">
+							<label>
+								Latitud
+								<input name="strLatitud" type="number" step="any" required placeholder="-12.0464" />
+							</label>
+							<label>
+								Longitud
+								<input name="strLongitud" type="number" step="any" required placeholder="-77.0428" />
+							</label>
+						</div>
+						<div class="actions" style="justify-content: flex-start">
+							<button type="button" class="button-ghost" id="use-current-location">
+								Usar mi ubicacion actual
+							</button>
+						</div>
+						<div id="map" aria-label="Mapa para elegir latitud y longitud"></div>
+						<p class="hint">Haz clic en el mapa para completar latitud y longitud automaticamente.</p>
+					</div>
+				</section>
+
+				<section class="panel">
+					<h2>Foto del Lugar</h2>
+					<div class="image-preview-wrap">
+						<label class="full">
+							Selecciona una imagen
+							<input id="photo-input" name="photoFile" type="file" accept="image/*" required />
+						</label>
+						<img id="photo-preview" class="image-preview" alt="Vista previa de la imagen seleccionada" />
+						<label class="full" style="display: none;">
+							URL de la foto (se completa al crear)
+							<input name="urlFoto" type="url" readonly placeholder="Se genera al presionar Crear lugar" />
+						</label>
+						<pre id="upload-status" class="upload-status">La imagen se subira automaticamente al crear el lugar.</pre>
+						<p class="hint">
+							No necesitas subir manualmente. Al presionar "Crear lugar", la imagen se
+							subira a Firebase Storage y se llenara la URL.
+						</p>
+					</div>
+				</section>
+
+				<section class="panel" style="display: none;">
+					<h2>Controles Sanitarios</h2>
+					<div class="controls-list" id="controls-list"></div>
+					<button class="button-ghost" type="button" id="add-control">+ Agregar control</button>
+				</section>
+
+				<div class="actions">
+					<button type="reset" class="button-ghost">Limpiar</button>
+					<button type="submit" class="button">Crear lugar</button>
+				</div>
+				<pre id="status" class="status">Listo.</pre>
+			</form>
+		</main>
+
+		<script
+			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			crossorigin=""
+		></script>
+		<script>
+			const API_ENDPOINT = "https://createplaceitem-q2gkufxprq-uc.a.run.app";
+
+			const form = document.getElementById("place-form");
+			const controlsList = document.getElementById("controls-list");
+			const addControlButton = document.getElementById("add-control");
+			const statusBox = document.getElementById("status");
+			const uploadStatusBox = document.getElementById("upload-status");
+			const photoInput = document.getElementById("photo-input");
+			const photoPreview = document.getElementById("photo-preview");
+			const useCurrentLocationButton = document.getElementById("use-current-location");
+
+			const idInput = form.elements.id;
+			const typeInput = form.elements.type;
+			const latInput = form.elements.strLatitud;
+			const lngInput = form.elements.strLongitud;
+			const urlFotoInput = form.elements.urlFoto;
+
+			let map;
+			let marker;
+
+			function setStatus(message, type) {
+				statusBox.textContent = message;
+				statusBox.className = "status" + (type ? " " + type : "");
+			}
+
+			function setUploadStatus(message, type) {
+				uploadStatusBox.textContent = message;
+				uploadStatusBox.className = "upload-status" + (type ? " " + type : "");
+			}
+
+			function generateUUID() {
+				if (window.crypto && typeof window.crypto.randomUUID === "function") {
+					return window.crypto.randomUUID();
+				}
+
+				return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+					const r = Math.floor(Math.random() * 16);
+					const v = c === "x" ? r : (r & 0x3) | 0x8;
+					return v.toString(16);
+				});
+			}
+
+			function createControlRow(control, valor) {
+				const row = document.createElement("div");
+				row.className = "control-row";
+
+				const controlLabel = document.createElement("label");
+				controlLabel.textContent = "Nombre del control";
+
+				const controlInput = document.createElement("input");
+				controlInput.name = "controlName";
+				controlInput.required = true;
+				controlInput.value = control || "";
+
+				const valueLabel = document.createElement("label");
+				valueLabel.textContent = "Valor numerico";
+
+				const valueInput = document.createElement("input");
+				valueInput.name = "controlValue";
+				valueInput.type = "number";
+				valueInput.step = "any";
+				valueInput.required = true;
+				valueInput.value = valor || "";
+
+				const removeButton = document.createElement("button");
+				removeButton.type = "button";
+				removeButton.className = "button-danger";
+				removeButton.title = "Eliminar";
+				removeButton.textContent = "X";
+
+				removeButton.addEventListener("click", function () {
+					row.remove();
+				});
+
+				controlLabel.appendChild(controlInput);
+				valueLabel.appendChild(valueInput);
+				row.appendChild(controlLabel);
+				row.appendChild(valueLabel);
+				row.appendChild(removeButton);
+				controlsList.appendChild(row);
+			}
+
+			function toFixedCoordinate(value) {
+				return Number(value).toFixed(6);
+			}
+
+			function setLatLng(lat, lng) {
+				latInput.value = toFixedCoordinate(lat);
+				lngInput.value = toFixedCoordinate(lng);
+			}
+
+			function moveMarker(lat, lng) {
+				if (!marker) {
+					marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+					marker.on("dragend", function () {
+						const point = marker.getLatLng();
+						setLatLng(point.lat, point.lng);
+					});
+				} else {
+					marker.setLatLng([lat, lng]);
+				}
+
+				map.panTo([lat, lng]);
+			}
+
+			function parseCoordinatePair() {
+				const lat = Number(String(latInput.value || "").trim());
+				const lng = Number(String(lngInput.value || "").trim());
+				if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+					return null;
+				}
+				return { lat: lat, lng: lng };
+			}
+
+			function updateMapFromInputs() {
+				const coords = parseCoordinatePair();
+				if (!coords) {
+					return;
+				}
+				moveMarker(coords.lat, coords.lng);
+			}
+
+			function initMap() {
+				map = L.map("map", { zoomControl: true }).setView([-12.0464, -77.0428], 6);
+
+				L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					maxZoom: 19,
+					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				}).addTo(map);
+
+				map.on("click", function (event) {
+					const point = event.latlng;
+					setLatLng(point.lat, point.lng);
+					moveMarker(point.lat, point.lng);
+				});
+
+				const initialPoint = parseCoordinatePair();
+				if (initialPoint) {
+					moveMarker(initialPoint.lat, initialPoint.lng);
+				}
+			}
+
+			function getBase64(file) {
+				return new Promise(function (resolve, reject) {
+					const reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = function () {
+						resolve(reader.result);
+					};
+					reader.onerror = function (error) {
+						reject(error);
+					};
+				});
+			}
+
+			function ensureCoordinates() {
+				const coords = parseCoordinatePair();
+				if (!coords) {
+					throw new Error("Ingresa una latitud y longitud validas.");
+				}
+			}
+
+			function collectControls() {
+				const rows = Array.from(controlsList.querySelectorAll(".control-row"));
+				const controls = rows.map(function (row) {
+					const controlInput = row.querySelector('input[name="controlName"]');
+					const valueInput = row.querySelector('input[name="controlValue"]');
+					const control = String(controlInput ? controlInput.value : "").trim();
+					const valueRaw = String(valueInput ? valueInput.value : "").trim();
+					const valor = Number(valueRaw);
+
+					if (!control) {
+						throw new Error("Cada control debe tener un nombre.");
+					}
+					if (!Number.isFinite(valor)) {
+						throw new Error("Cada control debe tener un valor numerico valido.");
+					}
+
+					return { control: control, valor: valor };
+				});
+
+				if (controls.length === 0) {
+					throw new Error("Agrega al menos un control sanitario.");
+				}
+
+				return controls;
+			}
+
+			async function handleSubmit(event) {
+				event.preventDefault();
+				setStatus("Creando lugar...", "");
+
+				try {
+					if (!form.reportValidity()) {
+						setStatus("Completa todos los campos obligatorios.", "error");
+						return;
+					}
+
+					ensureCoordinates();
+					const generatedId = generateUUID();
+					idInput.value = generatedId;
+
+					const type = String(typeInput.value || "").trim();
+
+					// Get image file details
+					const file = photoInput.files && photoInput.files[0];
+					if (!file) {
+						throw new Error("Selecciona una imagen antes de crear el lugar.");
+					}
+
+					setUploadStatus("Procesando imagen...", "");
+					const photoBase64 = await getBase64(file);
+					setUploadStatus("Imagen lista para enviar.", "ok");
+
+					// Initially set empty string; the backend will write and return urlFoto
+					urlFotoInput.value = "";
+
+					const fields = [
+						"id",
+						"strNombre",
+						"strTipoPlaya",
+						"idDepartamento",
+						"idProvincia",
+						"idDistrito",
+						"strDireccion",
+						"strCalidadSanitaria",
+						"keyCalidadSanitaria",
+						"strDescripcion",
+						"dateUltimaInspeccion",
+						"strUltimaInspeccion",
+						"strDepartamento",
+						"strProvincia",
+						"strDistrito",
+						"urlFoto",
+						"strSource",
+						"strLatitud",
+						"strLongitud",
+					];
+
+					const item = {};
+					for (let i = 0; i < fields.length; i += 1) {
+						const key = fields[i];
+						item[key] = String(form.elements[key].value || "").trim();
+					}
+
+					item.aControles = collectControls();
+
+					setStatus("Enviando informacion y subiendo imagen...", "");
+					const response = await fetch(API_ENDPOINT, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							type: type,
+							item: item,
+							photoBase64: photoBase64,
+							photoName: file.name
+						}),
+					});
+
+					const payload = await response.json().catch(function () {
+						return {};
+					});
+
+					if (!response.ok) {
+						throw new Error(
+							payload && payload.error
+								? String(payload.error)
+								: "La solicitud fallo con estado " + response.status,
+						);
+					}
+
+					if (payload.urlFoto) {
+						urlFotoInput.value = payload.urlFoto;
+						setUploadStatus("Imagen subida y URL asignada correctamente.", "ok");
+					}
+
+					setStatus("Lugar creado correctamente:\n" + JSON.stringify(payload, null, 2), "ok");
+				} catch (error) {
+					setStatus(String(error && error.message ? error.message : error), "error");
+				}
+			}
+
+			function resetImageSelection() {
+				photoInput.value = "";
+				photoPreview.src = "";
+				photoPreview.classList.remove("active");
+				urlFotoInput.value = "";
+				setUploadStatus("La imagen se subira automaticamente al crear el lugar.", "");
+			}
+
+			function bootstrap() {
+				idInput.value = "";
+				createControlRow("Limpieza", "0");
+
+				if (!latInput.value || !lngInput.value) {
+					setLatLng(-12.0464, -77.0428);
+				}
+
+				initMap();
+
+				addControlButton.addEventListener("click", function () {
+					createControlRow("", "");
+				});
+
+				useCurrentLocationButton.addEventListener("click", function () {
+					if (!navigator.geolocation) {
+						setStatus("La geolocalizacion no esta disponible en este navegador.", "error");
+						return;
+					}
+
+					navigator.geolocation.getCurrentPosition(
+						function (position) {
+							const lat = position.coords.latitude;
+							const lng = position.coords.longitude;
+							setLatLng(lat, lng);
+							moveMarker(lat, lng);
+							setStatus("Ubicacion actualizada con la posicion de tu dispositivo.", "ok");
+						},
+						function (error) {
+							setStatus("No se pudo obtener la ubicacion actual: " + error.message, "error");
+						},
+						{ enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
+					);
+				});
+
+				latInput.addEventListener("change", updateMapFromInputs);
+				lngInput.addEventListener("change", updateMapFromInputs);
+
+				photoInput.addEventListener("change", function () {
+					const file = photoInput.files && photoInput.files[0];
+					if (!file) {
+						resetImageSelection();
+						return;
+					}
+
+					if (!file.type.startsWith("image/")) {
+						resetImageSelection();
+						setUploadStatus("Selecciona un archivo de imagen valido.", "error");
+						return;
+					}
+
+					const previewUrl = URL.createObjectURL(file);
+					photoPreview.src = previewUrl;
+					photoPreview.classList.add("active");
+					urlFotoInput.value = "";
+					setUploadStatus("Imagen lista. Se subira automaticamente al crear el lugar.", "");
+				});
+
+				form.addEventListener("reset", function () {
+					window.setTimeout(function () {
+						controlsList.innerHTML = "";
+						createControlRow("Limpieza", "0");
+						idInput.value = "";
+						resetImageSelection();
+						setStatus("Listo.", "");
+					}, 0);
+				});
+
+				form.addEventListener("submit", handleSubmit);
+			}
+
+			bootstrap();
+		</script>
+	</body>
+</html>

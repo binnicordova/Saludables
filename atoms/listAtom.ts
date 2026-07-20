@@ -1,32 +1,11 @@
 import type { Item, ItemWithDistance } from "@/services/models/Item";
 import dataService from "@/services/storage";
 import type { DownloadSource, ListType } from "@/services/storage";
+import { distanceInMeters } from "@/utils/distance";
 import type * as Location from "expo-location";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { currentLocationAtom } from "./location";
-
-const distanceInMeters = (
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number,
-) => {
-    const toRadians = (degrees: number) => degrees * (Math.PI / 180);
-
-    const R = 6371e3;
-    const φ1 = toRadians(lat1);
-    const φ2 = toRadians(lat2);
-    const Δφ = toRadians(lat2 - lat1);
-    const Δλ = toRadians(lon2 - lon1);
-
-    const a =
-        Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c;
-};
 
 const sortDataAccordingLocation = (
     data: Item[],
@@ -52,7 +31,10 @@ const sortDataAccordingLocation = (
 export const listTypeAtom = atom<
     "beach" | "pool" | "hotel" | "restaurant" | "tourism"
 >("beach");
-export const shouldFilterHealthAtom = atom<boolean>(true);
+// Keep all locations visible by default. A number of lists only contain items
+// pending a sanitary status, so hiding `ns` records made entire categories look
+// empty even though their source data had loaded correctly.
+export const shouldFilterHealthAtom = atom<boolean>(false);
 
 // add filter atom here so makeFilteredListAtom can read it
 export const filterValueAtom = atom<string>("");
@@ -129,6 +111,17 @@ export const getRestaurantListDataAtom = makeFilteredListAtom(
     restaurantListDataAtom,
 );
 export const getTourismListDataAtom = makeFilteredListAtom(tourismListDataAtom);
+// Detail screens must be able to resolve a place opened from a deep link even
+// when a search or the optional health filter is currently active on the home
+// screen.
+export const getAllListDataAtom = atom((get) => {
+    const beaches = get(beachListDataAtom);
+    const pools = get(poolListDataAtom);
+    const hotels = get(hotelListDataAtom);
+    const restaurants = get(restaurantListDataAtom);
+    const tourism = get(tourismListDataAtom);
+    return [...beaches, ...pools, ...hotels, ...restaurants, ...tourism];
+});
 export const getAllFilteredListDataAtom = atom((get) => {
     const beaches = get(getBeachListDataAtom);
     const pools = get(getPoolListDataAtom);
